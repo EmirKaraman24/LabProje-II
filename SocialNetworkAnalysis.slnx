@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="SocialNetworkAnalysis.Core/SocialNetworkAnalysis.Core.csproj" />
+  <Project Path="SocialNetworkAnalysis.UI/SocialNetworkAnalysis.UI.csproj" />
+</Solution>

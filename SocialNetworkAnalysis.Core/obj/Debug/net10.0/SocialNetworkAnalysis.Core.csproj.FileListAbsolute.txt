@@ -1,0 +1,11 @@
+C:\Users\Wake up Neo\Desktop\LabProje-II\SocialNetworkAnalysis.Core\bin\Debug\net10.0\SocialNetworkAnalysis.Core.deps.json
+C:\Users\Wake up Neo\Desktop\LabProje-II\SocialNetworkAnalysis.Core\bin\Debug\net10.0\SocialNetworkAnalysis.Core.dll
+C:\Users\Wake up Neo\Desktop\LabProje-II\SocialNetworkAnalysis.Core\bin\Debug\net10.0\SocialNetworkAnalysis.Core.pdb
+C:\Users\Wake up Neo\Desktop\LabProje-II\SocialNetworkAnalysis.Core\obj\Debug\net10.0\SocialNetworkAnalysis.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Wake up Neo\Desktop\LabProje-II\SocialNetworkAnalysis.Core\obj\Debug\net10.0\SocialNetworkAnalysis.Core.AssemblyInfoInputs.cache
+C:\Users\Wake up Neo\Desktop\LabProje-II\SocialNetworkAnalysis.Core\obj\Debug\net10.0\SocialNetworkAnalysis.Core.AssemblyInfo.cs
+C:\Users\Wake up Neo\Desktop\LabProje-II\SocialNetworkAnalysis.Core\obj\Debug\net10.0\SocialNetworkAnalysis.Core.csproj.CoreCompileInputs.cache
+C:\Users\Wake up Neo\Desktop\LabProje-II\SocialNetworkAnalysis.Core\obj\Debug\net10.0\SocialNetworkAnalysis.Core.dll
+C:\Users\Wake up Neo\Desktop\LabProje-II\SocialNetworkAnalysis.Core\obj\Debug\net10.0\refint\SocialNetworkAnalysis.Core.dll
+C:\Users\Wake up Neo\Desktop\LabProje-II\SocialNetworkAnalysis.Core\obj\Debug\net10.0\SocialNetworkAnalysis.Core.pdb
+C:\Users\Wake up Neo\Desktop\LabProje-II\SocialNetworkAnalysis.Core\obj\Debug\net10.0\ref\SocialNetworkAnalysis.Core.dll
