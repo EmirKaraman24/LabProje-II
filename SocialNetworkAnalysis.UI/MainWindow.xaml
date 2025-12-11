@@ -30,9 +30,23 @@
 
             <GroupBox Header="Algoritmalar" Margin="0,5">
                 <StackPanel>
-                    <Button x:Name="BtnBfs" Content="BFS Çalıştır" Margin="2" Click="BtnBfs_Click"/>
-                    <Button x:Name="BtnDfs" Content="DFS Çalıştır" Margin="2" Click="BtnDfs_Click"/>
-                    <Button x:Name="BtnMst" Content="MST / En Kısa Yol" Margin="2" Click="BtnShortestPath_Click"/>
+                    <TextBlock Text="Seçim Modu:" FontWeight="Bold" Margin="0,5,0,0"/>
+                    <RadioButton x:Name="RadioSource" Content="Başlangıç (Kaynak) Seç" GroupName="SelectionMode" IsChecked="True"/>
+                    <RadioButton x:Name="RadioTarget" Content="Bitiş (Hedef) Seç" GroupName="SelectionMode"/>
+                    
+                    <StackPanel Orientation="Horizontal" Margin="0,5">
+                        <TextBlock Text="Kaynak:" Width="50"/>
+                        <TextBox x:Name="TxtSourceId" Width="100" IsReadOnly="True" Background="#EEE"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5">
+                        <TextBlock Text="Hedef:" Width="50"/>
+                        <TextBox x:Name="TxtTargetId" Width="100" IsReadOnly="True" Background="#EEE"/>
+                    </StackPanel>
+
+                    <Button x:Name="BtnBfs" Content="BFS Çalıştır (Kaynak'tan)" Margin="2" Click="BtnBfs_Click"/>
+                    <Button x:Name="BtnDfs" Content="DFS Çalıştır (Kaynak'tan)" Margin="2" Click="BtnDfs_Click"/>
+                    <Button x:Name="BtnDijkstra" Content="Dijkstra (En Kısa Yol)" Margin="2" Click="BtnDijkstra_Click"/>
+                    <Button x:Name="BtnAStar" Content="A* (En Kısa Yol)" Margin="2" Click="BtnShortestPath_Click"/>
                     <Button x:Name="BtnCentrality" Content="Merkezilik Analizi" Margin="2" Click="BtnCentrality_Click"/>
                 </StackPanel>
             </GroupBox>
