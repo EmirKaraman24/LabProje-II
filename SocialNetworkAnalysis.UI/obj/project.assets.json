@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net10.0-windows7.0": {}
+    "net10.0-windows7.0": {
+      "SocialNetworkAnalysis.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/SocialNetworkAnalysis.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SocialNetworkAnalysis.Core.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "SocialNetworkAnalysis.Core/1.0.0": {
+      "type": "project",
+      "path": "../SocialNetworkAnalysis.Core/SocialNetworkAnalysis.Core.csproj",
+      "msbuildProject": "../SocialNetworkAnalysis.Core/SocialNetworkAnalysis.Core.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net10.0-windows7.0": []
+    "net10.0-windows7.0": [
+      "SocialNetworkAnalysis.Core >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\Wake up Neo\\.nuget\\packages\\": {}
@@ -31,7 +50,11 @@
       "frameworks": {
         "net10.0-windows7.0": {
           "targetAlias": "net10.0-windows",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Wake up Neo\\Desktop\\LabProje-II\\SocialNetworkAnalysis.Core\\SocialNetworkAnalysis.Core.csproj": {
+              "projectPath": "C:\\Users\\Wake up Neo\\Desktop\\LabProje-II\\SocialNetworkAnalysis.Core\\SocialNetworkAnalysis.Core.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

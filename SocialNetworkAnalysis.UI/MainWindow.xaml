@@ -5,8 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SocialNetworkAnalysis.UI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Sosyal Ağ Analizi" Height="600" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="250" />
+        </Grid.ColumnDefinitions>
 
+        <!-- Graph Area -->
+        <Border Grid.Column="0" BorderBrush="Gray" BorderThickness="1" Margin="5">
+            <Canvas x:Name="GraphCanvas" Background="#FAFAFA" MouseLeftButtonDown="GraphCanvas_MouseLeftButtonDown"/>
+        </Border>
+
+        <!-- Control Panel -->
+        <StackPanel Grid.Column="1" Margin="5" Background="#F0F0F0">
+            <TextBlock Text="Kontrol Paneli" FontWeight="Bold" FontSize="16" Margin="0,0,0,10" HorizontalAlignment="Center"/>
+
+            <GroupBox Header="Dosya İşlemleri" Margin="0,5">
+                <StackPanel>
+                    <Button x:Name="BtnLoadGraph" Content="Graf Yükle (CSV)" Margin="5" Click="BtnLoadGraph_Click"/>
+                    <Button x:Name="BtnSaveGraph" Content="Graf Kaydet" Margin="5" Click="BtnSaveGraph_Click"/>
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="Algoritmalar" Margin="0,5">
+                <StackPanel>
+                    <Button x:Name="BtnBfs" Content="BFS Çalıştır" Margin="2" Click="BtnBfs_Click"/>
+                    <Button x:Name="BtnDfs" Content="DFS Çalıştır" Margin="2" Click="BtnDfs_Click"/>
+                    <Button x:Name="BtnMst" Content="MST / En Kısa Yol" Margin="2" Click="BtnShortestPath_Click"/>
+                    <Button x:Name="BtnCentrality" Content="Merkezilik Analizi" Margin="2" Click="BtnCentrality_Click"/>
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="Bilgi" Margin="0,5">
+                <TextBlock x:Name="TxtInfo" Text="Hazır" TextWrapping="Wrap" Height="100"/>
+            </GroupBox>
+        </StackPanel>
     </Grid>
 </Window>
