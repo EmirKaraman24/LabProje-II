@@ -14,5 +14,31 @@ namespace SocialNetworkAnalysis.Core
                 Nodes[node.Id] = node;
             }
         }
+
+        public void AddEdge(string sourceId, string targetId, double weight)
+        {
+            if (sourceId == targetId) return;
+
+            if (Nodes.ContainsKey(sourceId) && Nodes.ContainsKey(targetId))
+            {
+                bool exists = false;
+                foreach(var e in Edges)
+                {
+                    if ((e.SourceId == sourceId && e.TargetId == targetId) ||
+                        (e.SourceId == targetId && e.TargetId == sourceId))
+                    {
+                        exists = true;
+                        break;
+                    }
+                }
+
+                if (!exists)
+                {
+                    Edges.Add(new Edge(sourceId, targetId, weight));
+                    Nodes[sourceId].Neighbors.Add(targetId);
+                    Nodes[targetId].Neighbors.Add(sourceId);
+                }
+            }
+        }
     }
 }
