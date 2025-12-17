@@ -52,5 +52,18 @@ namespace SocialNetworkAnalysis.Core
 
             return graph;
         }
+
+        public void SaveGraphToCsv(Graph graph, string filePath)
+        {
+            using (var writer = new StreamWriter(filePath))
+            {
+                writer.WriteLine("Id,Name,Activity,Interaction,ConnectionCount,Neighbors");
+                foreach (var node in graph.Nodes.Values)
+                {
+                    string neighbors = string.Join(";", node.Neighbors);
+                    writer.WriteLine($"{node.Id},{node.Name},{node.Activity},{node.Interaction},{node.ConnectionCount},{neighbors}");
+                }
+            }
+        }
     }
 }
