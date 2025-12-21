@@ -18,6 +18,14 @@
             <Canvas x:Name="GraphCanvas" Background="White" MouseLeftButtonDown="GraphCanvas_MouseLeftButtonDown"/>
         </Border>
 
-        <!-- Components will be added here -->
+        <!-- Right Side: Controls -->
+        <StackPanel Grid.Column="1" Margin="10">
+            <!-- File Operations -->
+            <GroupBox Header="Dosya İşlemleri" Margin="0,0,0,10">
+                <StackPanel Margin="5">
+                    <!-- Buttons will be added here -->
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
     </Grid>
 </Window>
