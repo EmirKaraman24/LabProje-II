@@ -9,6 +9,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using Microsoft.Win32;
+using SocialNetworkAnalysis.Core;
+
 namespace SocialNetworkAnalysis.UI;
 
 /// <summary>
@@ -16,15 +19,33 @@ namespace SocialNetworkAnalysis.UI;
 /// </summary>
 public partial class MainWindow : Window
 {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+    private Graph? _graph;
+    private FileService _fileService;
 
-        private void BtnLoadCsv_Click(object sender, RoutedEventArgs e)
+    public MainWindow()
+    {
+        InitializeComponent();
+        _fileService = new FileService();
+    }
+
+    private void BtnLoadCsv_Click(object sender, RoutedEventArgs e)
+    {
+        OpenFileDialog openFileDialog = new OpenFileDialog();
+        openFileDialog.Filter = "CSV Dosyaları (*.csv)|*.csv|Tüm Dosyalar (*.*)|*.*";
+        if (openFileDialog.ShowDialog() == true)
         {
-            MessageBox.Show("CSV Yükleme Henüz Hazır Değil");
+            try
+            {
+                _graph = _fileService.LoadGraphFromCsv(openFileDialog.FileName);
+                MessageBox.Show($"Grafik yüklendi! {_graph.Nodes.Count} düğüm, {_graph.Edges.Count} kenar.");
+                // DrawGraph() will be called here later
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Hata: {ex.Message}");
+            }
         }
+    }
 
         private void BtnSaveGraph_Click(object sender, RoutedEventArgs e)
         {
