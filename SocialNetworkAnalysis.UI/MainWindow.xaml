@@ -13,6 +13,11 @@
             <ColumnDefinition Width="250" />
         </Grid.ColumnDefinitions>
 
+        <!-- Left Side: Canvas -->
+        <Border Grid.Column="0" BorderBrush="Black" BorderThickness="1" Margin="10">
+            <Canvas x:Name="GraphCanvas" Background="White" MouseLeftButtonDown="GraphCanvas_MouseLeftButtonDown"/>
+        </Border>
+
         <!-- Components will be added here -->
     </Grid>
 </Window>
