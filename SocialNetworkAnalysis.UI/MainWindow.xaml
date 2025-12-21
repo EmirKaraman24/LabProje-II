@@ -8,6 +8,11 @@
         Title="Sosyal Ağ Analizi ve Görselleştirme" Height="600" Width="900" 
         WindowStartupLocation="CenterScreen">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="250" />
+        </Grid.ColumnDefinitions>
 
+        <!-- Components will be added here -->
     </Grid>
 </Window>
