@@ -21,11 +21,17 @@ public partial class MainWindow : Window
 {
     private Graph? _graph;
     private FileService _fileService;
+    private Dictionary<string, Point> _nodePositions = new Dictionary<string, Point>();
 
     public MainWindow()
     {
         InitializeComponent();
         _fileService = new FileService();
+    }
+
+    private void DrawGraph()
+    {
+        // Graph visualization logic to be added
     }
 
     private void BtnLoadCsv_Click(object sender, RoutedEventArgs e)
@@ -38,7 +44,7 @@ public partial class MainWindow : Window
             {
                 _graph = _fileService.LoadGraphFromCsv(openFileDialog.FileName);
                 MessageBox.Show($"Grafik yüklendi! {_graph.Nodes.Count} düğüm, {_graph.Edges.Count} kenar.");
-                // DrawGraph() will be called here later
+                DrawGraph();
             }
             catch (Exception ex)
             {
