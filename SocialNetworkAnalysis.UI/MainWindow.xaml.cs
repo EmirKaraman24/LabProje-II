@@ -16,8 +16,23 @@ namespace SocialNetworkAnalysis.UI;
 /// </summary>
 public partial class MainWindow : Window
 {
-    public MainWindow()
-    {
-        InitializeComponent();
-    }
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+
+        private void BtnLoadCsv_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("CSV Yükleme Henüz Hazır Değil");
+        }
+
+        private void BtnSaveGraph_Click(object sender, RoutedEventArgs e)
+        {
+             MessageBox.Show("Kaydetme Henüz Hazır Değil");
+        }
+
+        private void GraphCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            // Placeholder for node selection logic
+        }
 }
