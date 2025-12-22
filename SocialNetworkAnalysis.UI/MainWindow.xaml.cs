@@ -63,7 +63,31 @@ public partial class MainWindow : Window
             // Placeholder for node selection logic
         }
 
-        private void BtnBfs_Click(object sender, RoutedEventArgs e) { MessageBox.Show("BFS Henüz Hazır Değil"); }
+        private void BtnBfs_Click(object sender, RoutedEventArgs e)
+        {
+            if (_graph == null) return;
+            string startId = TxtSourceId.Text;
+
+            // Default to first node if simple test needed and no source selected
+            if (string.IsNullOrEmpty(startId))
+            {
+                 if (_graph.Nodes.Count > 0)
+                 {
+                     startId = _graph.Nodes.Keys.First();
+                 }
+                 else
+                 {
+                     MessageBox.Show("Grafik boş!");
+                     return;
+                 }
+            }
+
+            var bfs = new BfsAlgorithm();
+            var visited = bfs.Execute(_graph, startId);
+            
+            var resultStr = string.Join(" -> ", visited.Select(n => n.Id));
+            TxtInfo.Text = $"BFS Sonucu ({startId} başlangıçlı):\n{resultStr}";
+        }
         private void BtnDfs_Click(object sender, RoutedEventArgs e) { MessageBox.Show("DFS Henüz Hazır Değil"); }
         private void BtnDijkstra_Click(object sender, RoutedEventArgs e) { MessageBox.Show("Dijkstra Henüz Hazır Değil"); }
         private void BtnAStar_Click(object sender, RoutedEventArgs e) { MessageBox.Show("A* Henüz Hazır Değil"); }
