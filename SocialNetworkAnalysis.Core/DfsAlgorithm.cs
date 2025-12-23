@@ -4,6 +4,40 @@ namespace SocialNetworkAnalysis.Core
 {
     public class DfsAlgorithm
     {
-        // Execute method to be added
+        public List<Node> Execute(Graph graph, string startNodeId)
+        {
+            var visited = new List<Node>();
+            if (!graph.Nodes.ContainsKey(startNodeId)) return visited;
+
+            var stack = new Stack<string>();
+            var visitedIds = new HashSet<string>();
+
+            stack.Push(startNodeId);
+
+            while (stack.Count > 0)
+            {
+                var currentId = stack.Pop();
+                if (!visitedIds.Contains(currentId))
+                {
+                    visitedIds.Add(currentId);
+                    if (graph.Nodes.TryGetValue(currentId, out var node))
+                    {
+                        visited.Add(node);
+
+                        // Push neighbors in reverse order so they are processed in original order
+                        for (int i = node.Neighbors.Count - 1; i >= 0; i--)
+                        {
+                            var neighborId = node.Neighbors[i];
+                            if (!visitedIds.Contains(neighborId))
+                            {
+                                stack.Push(neighborId);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return visited;
+        }
     }
 }
