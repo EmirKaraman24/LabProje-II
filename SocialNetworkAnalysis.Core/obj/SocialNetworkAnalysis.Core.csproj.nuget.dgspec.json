@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Wake up Neo\\Desktop\\LabProje-II\\SocialNetworkAnalysis.Core\\SocialNetworkAnalysis.Core.csproj": {}
+    "c:\\Users\\Wake up Neo\\Desktop\\LabProje-II\\SocialNetworkAnalysis.Core\\SocialNetworkAnalysis.Core.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Wake up Neo\\Desktop\\LabProje-II\\SocialNetworkAnalysis.Core\\SocialNetworkAnalysis.Core.csproj": {
+    "c:\\Users\\Wake up Neo\\Desktop\\LabProje-II\\SocialNetworkAnalysis.Core\\SocialNetworkAnalysis.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Wake up Neo\\Desktop\\LabProje-II\\SocialNetworkAnalysis.Core\\SocialNetworkAnalysis.Core.csproj",
+        "projectUniqueName": "c:\\Users\\Wake up Neo\\Desktop\\LabProje-II\\SocialNetworkAnalysis.Core\\SocialNetworkAnalysis.Core.csproj",
         "projectName": "SocialNetworkAnalysis.Core",
-        "projectPath": "C:\\Users\\Wake up Neo\\Desktop\\LabProje-II\\SocialNetworkAnalysis.Core\\SocialNetworkAnalysis.Core.csproj",
+        "projectPath": "c:\\Users\\Wake up Neo\\Desktop\\LabProje-II\\SocialNetworkAnalysis.Core\\SocialNetworkAnalysis.Core.csproj",
         "packagesPath": "C:\\Users\\Wake up Neo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Wake up Neo\\Desktop\\LabProje-II\\SocialNetworkAnalysis.Core\\obj\\",
+        "outputPath": "c:\\Users\\Wake up Neo\\Desktop\\LabProje-II\\SocialNetworkAnalysis.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Wake up Neo\\AppData\\Roaming\\NuGet\\NuGet.Config"

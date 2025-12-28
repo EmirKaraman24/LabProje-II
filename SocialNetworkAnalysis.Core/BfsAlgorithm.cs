@@ -2,8 +2,14 @@ using System.Collections.Generic;
 
 namespace SocialNetworkAnalysis.Core
 {
+    /// <summary>
+    /// Genişlik Öncelikli Arama (BFS) algoritmasını uygular.
+    /// </summary>
     public class BfsAlgorithm
     {
+        /// <summary>
+        /// Başlangıç düğümünden itibaren grafiği gezer ve ziyaret edilen düğümleri döndürür.
+        /// </summary>
         public List<Node> Execute(Graph graph, string startNodeId)
         {
             var visited = new List<Node>();

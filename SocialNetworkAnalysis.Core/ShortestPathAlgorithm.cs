@@ -4,8 +4,14 @@ using System.Linq;
 
 namespace SocialNetworkAnalysis.Core
 {
+    /// <summary>
+    /// En kısa yol algoritmalarını (Dijkstra, A*) barındırır.
+    /// </summary>
     public class ShortestPathAlgorithm
     {
+        /// <summary>
+        /// Dijkstra algoritması ile iki düğüm arasındaki en kısa yolu bulur.
+        /// </summary>
         public List<Node> Dijkstra(Graph graph, string startId, string endId)
         {
             var distances = new Dictionary<string, double>();
@@ -59,6 +65,9 @@ namespace SocialNetworkAnalysis.Core
             return new List<Node>();
         }
 
+        /// <summary>
+        /// A* algoritması ile iki düğüm arasındaki en kısa yolu (sezgisel yöntemle) bulur.
+        /// </summary>
         public List<Node> AStar(Graph graph, string startId, string endId, Func<Node, Node, double> heuristic)
         {
             var distances = new Dictionary<string, double>(); // g(n)

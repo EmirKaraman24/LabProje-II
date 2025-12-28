@@ -50,7 +50,7 @@
                     <Button x:Name="BtnCentrality" Content="Merkezilik (Centrality)" Height="25" Click="BtnCentrality_Click"/>
                 </StackPanel>
             </GroupBox>
-            </GroupBox>
+
 
             <!-- Info Panel -->
             <GroupBox Header="Bilgi / Sonuçlar" Height="150">

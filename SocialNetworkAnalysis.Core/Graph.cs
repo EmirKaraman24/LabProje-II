@@ -2,11 +2,17 @@ using System.Collections.Generic;
 
 namespace SocialNetworkAnalysis.Core
 {
+    /// <summary>
+    /// Graf veri yapısını yönetir.
+    /// </summary>
     public class Graph
     {
-        public Dictionary<string, Node> Nodes { get; private set; } = new Dictionary<string, Node>();
-        public List<Edge> Edges { get; private set; } = new List<Edge>();
+        public Dictionary<string, Node> Nodes { get; private set; } = new Dictionary<string, Node>(); // Düğüm listesi
+        public List<Edge> Edges { get; private set; } = new List<Edge>(); // Kenar listesi
 
+        /// <summary>
+        /// Grafa yeni bir düğüm ekler.
+        /// </summary>
         public void AddNode(Node node)
         {
             if (!Nodes.ContainsKey(node.Id))
@@ -15,9 +21,12 @@ namespace SocialNetworkAnalysis.Core
             }
         }
 
+        /// <summary>
+        /// İki düğüm arasına kenar ekler.
+        /// </summary>
         public void AddEdge(string sourceId, string targetId, double weight)
         {
-            if (sourceId == targetId) return;
+            if (sourceId == targetId) return; // Kendine döngü engelle
 
             if (Nodes.ContainsKey(sourceId) && Nodes.ContainsKey(targetId))
             {

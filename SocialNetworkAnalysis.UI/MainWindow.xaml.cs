@@ -171,5 +171,20 @@ public partial class MainWindow : Window
                 TxtInfo.Text = $"{algorithmType}: Yol bulunamadı.";
             }
         }
-        private void BtnCentrality_Click(object sender, RoutedEventArgs e) { MessageBox.Show("Merkezilik Henüz Hazır Değil"); }
+        private void BtnCentrality_Click(object sender, RoutedEventArgs e)
+        {
+            if (_graph == null) return;
+
+            var centrality = new CentralityAlgorithm();
+            var results = centrality.CalculateDegreeCentrality(_graph, 5); // Top 5
+
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("Derece Merkeziliği (Top 5):");
+            foreach (var item in results)
+            {
+                sb.AppendLine($"{item.Key.Name} ({item.Key.Id}): {item.Value}");
+            }
+
+            TxtInfo.Text = sb.ToString();
+        }
 }

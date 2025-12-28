@@ -2,8 +2,14 @@ using System.Collections.Generic;
 
 namespace SocialNetworkAnalysis.Core
 {
+    /// <summary>
+    /// Derinlik Öncelikli Arama (DFS) algoritmasını uygular.
+    /// </summary>
     public class DfsAlgorithm
     {
+        /// <summary>
+        /// Başlangıç düğümünden itibaren grafiği derinlemesine gezer.
+        /// </summary>
         public List<Node> Execute(Graph graph, string startNodeId)
         {
             var visited = new List<Node>();
