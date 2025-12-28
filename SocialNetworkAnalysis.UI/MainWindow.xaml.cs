@@ -112,7 +112,64 @@ public partial class MainWindow : Window
             var resultStr = string.Join(" -> ", visited.Select(n => n.Id));
             TxtInfo.Text = $"DFS Sonucu ({startId} başlangıçlı):\n{resultStr}";
         }
-        private void BtnDijkstra_Click(object sender, RoutedEventArgs e) { MessageBox.Show("Dijkstra Henüz Hazır Değil"); }
-        private void BtnAStar_Click(object sender, RoutedEventArgs e) { MessageBox.Show("A* Henüz Hazır Değil"); }
+        private void BtnDijkstra_Click(object sender, RoutedEventArgs e) 
+        { 
+            RunShortestPath("Dijkstra");
+        }
+
+        private void BtnAStar_Click(object sender, RoutedEventArgs e) 
+        { 
+            RunShortestPath("AStar"); 
+        }
+        
+        private void RunShortestPath(string algorithmType)
+        {
+            if (_graph == null) return;
+            string src = TxtSourceId.Text;
+            string tgt = TxtTargetId.Text;
+
+            if (string.IsNullOrEmpty(src) || string.IsNullOrEmpty(tgt))
+            {
+                MessageBox.Show("Lütfen Kaynak ve Hedef düğümleri seçin.");
+                return;
+            }
+
+            var sp = new ShortestPathAlgorithm();
+            List<Node> path;
+            
+            // Heuristic for A* (Simple placeholder for now, usually Euclidean)
+            Func<Node, Node, double> heuristic = (n1, n2) => 0; 
+            
+            if (algorithmType == "AStar")
+            {
+                // Note: For real A*, we need positions. Assuming UI positions map to node logic or using dummy
+                // For now returning 0 so it behaves like Dijkstra until we have coordinates in Node or use _nodePositions
+                 heuristic = (n1, n2) => 
+                {
+                    if (_nodePositions.ContainsKey(n1.Id) && _nodePositions.ContainsKey(n2.Id))
+                    {
+                        Point p1 = _nodePositions[n1.Id];
+                        Point p2 = _nodePositions[n2.Id];
+                        return Math.Sqrt(Math.Pow(p1.X - p2.X, 2) + Math.Pow(p1.Y - p2.Y, 2));
+                    }
+                    return 0;
+                };
+                path = sp.AStar(_graph, src, tgt, heuristic);
+            }
+            else
+            {
+                path = sp.Dijkstra(_graph, src, tgt);
+            }
+
+            if (path.Count > 0)
+            {
+                var pathStr = string.Join(" -> ", path.Select(n => n.Id));
+                TxtInfo.Text = $"{algorithmType} Yolu:\n{pathStr}";
+            }
+            else
+            {
+                TxtInfo.Text = $"{algorithmType}: Yol bulunamadı.";
+            }
+        }
         private void BtnCentrality_Click(object sender, RoutedEventArgs e) { MessageBox.Show("Merkezilik Henüz Hazır Değil"); }
 }
