@@ -13,6 +13,7 @@ namespace SocialNetworkAnalysis.Core
         {
             var graph = new Graph();
             var lines = File.ReadAllLines(filePath);
+            var tempNeighbors = new Dictionary<string, List<string>>(); // Geçici komşu listesi
 
             // 1. Düğümleri oluştur
             foreach (var line in lines.Skip(1)) // Başlık satırını atla
@@ -20,8 +21,9 @@ namespace SocialNetworkAnalysis.Core
                 var parts = line.Split(',');
                 if (parts.Length >= 5)
                 {
+                    var id = parts[0].Trim();
                     var node = new Node(
-                        id: parts[0].Trim(),
+                        id: id,
                         name: parts[1].Trim(),
                         activity: double.Parse(parts[2].Trim()),
                         interaction: double.Parse(parts[3].Trim()),
@@ -31,8 +33,8 @@ namespace SocialNetworkAnalysis.Core
                     // Komşu ID'lerini geçici olarak sakla
                     if (parts.Length > 5)
                     {
-                         var neighborIds = parts[5].Split(';').Select(n => n.Trim()).Where(n => !string.IsNullOrEmpty(n));
-                         node.Neighbors.AddRange(neighborIds);
+                         var neighborIds = parts[5].Split(';').Select(n => n.Trim()).Where(n => !string.IsNullOrEmpty(n)).ToList();
+                         tempNeighbors[id] = neighborIds;
                     }
 
                     graph.AddNode(node);
@@ -40,15 +42,23 @@ namespace SocialNetworkAnalysis.Core
             }
 
             // 2. Kenarları ve Ağırlıkları hesapla
-            foreach (var node in graph.Nodes.Values)
+            foreach (var kvp in tempNeighbors)
             {
-                foreach (var neighborId in node.Neighbors)
+                var sourceId = kvp.Key;
+                var neighbors = kvp.Value;
+
+                if (graph.Nodes.ContainsKey(sourceId))
                 {
-                    if (graph.Nodes.ContainsKey(neighborId))
+                    var node = graph.Nodes[sourceId];
+                    
+                    foreach (var neighborId in neighbors)
                     {
-                        var neighbor = graph.Nodes[neighborId];
-                        double weight = WeightCalculator.CalculateWeight(node, neighbor);
-                        graph.AddEdge(node.Id, neighborId, weight);
+                        if (graph.Nodes.ContainsKey(neighborId))
+                        {
+                            var neighbor = graph.Nodes[neighborId];
+                            double weight = WeightCalculator.CalculateWeight(node, neighbor);
+                            graph.AddEdge(sourceId, neighborId, weight);
+                        }
                     }
                 }
             }
