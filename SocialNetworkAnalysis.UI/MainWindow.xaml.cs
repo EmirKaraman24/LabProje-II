@@ -346,20 +346,20 @@ public partial class MainWindow : Window
             return;
         }
 
-        var dialog = new NodeDialog();
-        if (dialog.ShowDialog() == true)
-        {
-            if (_graph.Nodes.ContainsKey(dialog.NodeId))
+            var dialog = new NodeDialog();
+            if (dialog.ShowDialog() == true)
             {
-                MessageBox.Show("Bu ID'ye sahip bir düğüm zaten var!");
-                return;
+                var node = new Node(dialog.NodeId, dialog.NodeName, dialog.Activity, dialog.Interaction, dialog.ConnectionCount);
+                
+                if (!_graph.AddNode(node))
+                {
+                    MessageBox.Show("Bu ID'ye sahip bir düğüm zaten var veya ID geçersiz!");
+                    return;
+                }
+                
+                DrawGraph();
+                MessageBox.Show("Düğüm eklendi!");
             }
-
-            var node = new Node(dialog.NodeId, dialog.NodeName, dialog.Activity, dialog.Interaction, dialog.ConnectionCount);
-            _graph.AddNode(node);
-            DrawGraph();
-            MessageBox.Show("Düğüm eklendi!");
-        }
     }
 
     private void BtnRemoveNode_Click(object sender, RoutedEventArgs e)

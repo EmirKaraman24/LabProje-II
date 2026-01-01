@@ -14,12 +14,17 @@ namespace SocialNetworkAnalysis.Core
         /// <summary>
         /// Grafa yeni bir düğüm ekler.
         /// </summary>
-        public void AddNode(Node node)
+        public bool AddNode(Node node)
         {
-            if (!Nodes.ContainsKey(node.Id))
-            {
-                Nodes[node.Id] = node;
-            }
+            // Hatalı veri kontrolü
+            if (string.IsNullOrWhiteSpace(node.Id))
+                return false;
+            
+            if (Nodes.ContainsKey(node.Id))
+                return false; // Aynı ID'li düğüm zaten var
+            
+            Nodes[node.Id] = node;
+            return true;
         }
 
         /// <summary>

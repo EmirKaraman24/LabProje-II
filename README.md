@@ -1,191 +1,288 @@
-# Sosyal Ağ Analizi ve Görselleştirme Projesi
+<div align="center">
 
-## Proje Bilgileri
+# 🌐 Sosyal Ağ Analizi ve Görselleştirme
 
-- **Proje Adı:** Sosyal Ağ Analizi ve Görselleştirme Uygulaması
-- **Grup:** 40. Grup
-- **Ekip Üyeleri:**
-  - 231307093 - Muhammed Emir Karaman
-  - 231307037 - Nuh Regaib Ünsal
-- **Ders:** Yazılım Geliştirme Laboratuvarı-I (Lab Proje II)
-- **Tarih:** Ocak 2026
+[![.NET](https://img.shields.io/badge/.NET-10.0-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)](https://dotnet.microsoft.com/)
+[![WPF](https://img.shields.io/badge/WPF-Desktop-0078D4?style=for-the-badge&logo=windows&logoColor=white)](https://docs.microsoft.com/wpf/)
+[![License](https://img.shields.io/badge/License-Educational-green?style=for-the-badge)](LICENSE)
 
----
+**Graf algoritmaları ile sosyal ağ analizi yapan modern bir masaüstü uygulaması**
 
-## 1. Giriş
-
-Bu proje, sosyal ağ verilerini analiz etmek, görselleştirmek ve çeşitli graf algoritmalarını uygulamak amacıyla geliştirilmiştir. Kullanıcılar ve bağlantılar bir graf yapısı olarak modellenmiş, çeşitli algoritmalar ile analiz edilmiş ve görselleştirilmiştir.
-
-### Amaç
-
-- Graf veri yapılarını kullanarak sosyal ağları modellemek
-- BFS, DFS, Dijkstra, A* gibi temel graf algoritmalarını uygulamak
-- Bağlı bileşenleri tespit etmek
-- Merkezilik analizi yapmak
-- Welsh-Powell algoritması ile graf renklendirme yapmak
-- Görselleştirme ile sonuçları sunmak
+[✨ Özellikler](#-özellikler) •
+[🚀 Kurulum](#-kurulum) •
+[📖 Kullanım](#-kullanım) •
+[🔬 Algoritmalar](#-algoritmalar) •
+[📊 Testler](#-test-sonuçları)
 
 ---
 
-## 2. Algoritmalar
+</div>
 
-### 2.1. BFS (Breadth-First Search) - Genişlik Öncelikli Arama
+## 📋 Proje Bilgileri
 
-**Çalışma Mantığı:**
-BFS algoritması, başlangıç düğümünden başlayarak önce tüm komşuları ziyaret eder, sonra komşuların komşularını ziyaret eder. Queue (kuyruk) veri yapısı kullanılır.
+| | |
+|---|---|
+| **📛 Proje Adı** | Sosyal Ağ Analizi ve Görselleştirme Uygulaması |
+| **👥 Grup** | 40. Grup |
+| **👨‍💻 Ekip** | Muhammed Emir Karaman (231307093) <br> Nuh Regaib Ünsal (231307037) |
+| **📚 Ders** | Yazılım Geliştirme Laboratuvarı-I |
+| **📅 Tarih** | Ocak 2026 |
 
-**Karmaşıklık Analizi:**
-- Zaman Karmaşıklığı: O(V + E) - V: düğüm sayısı, E: kenar sayısı
-- Uzay Karmaşıklığı: O(V)
+---
 
-**Akış Diyagramı:**
-```mermaid
-flowchart TD
-    A[Başla] --> B[Başlangıç düğümünü queue'ya ekle]
-    B --> C{Queue boş mu?}
-    C -->|Evet| D[Bitti]
-    C -->|Hayır| E[Queue'dan düğüm çıkar]
-    E --> F[Düğümü ziyaret et]
-    F --> G[Düğümün komşularını kontrol et]
-    G --> H{Komşu ziyaret edildi mi?}
-    H -->|Hayır| I[Komşuyu queue'ya ekle]
-    I --> C
-    H -->|Evet| C
-```
+## ✨ Özellikler
 
-### 2.2. DFS (Depth-First Search) - Derinlik Öncelikli Arama
+<table>
+<tr>
+<td width="50%">
 
-**Çalışma Mantığı:**
-DFS algoritması, başlangıç düğümünden başlayarak mümkün olduğunca derine iner, geri dönüş yaparak diğer dalları keşfeder. Stack (yığın) veri yapısı kullanılır.
+### 📁 Veri İşlemleri
+- ✅ CSV formatında yükleme/kaydetme
+- ✅ JSON formatında yükleme/kaydetme
+- ✅ Komşuluk matrisi export
+- ✅ Komşuluk listesi export
 
-**Karmaşıklık Analizi:**
-- Zaman Karmaşıklığı: O(V + E)
-- Uzay Karmaşıklığı: O(V)
+</td>
+<td width="50%">
 
-**Akış Diyagramı:**
-```mermaid
-flowchart TD
-    A[Başla] --> B[Başlangıç düğümünü stack'e ekle]
-    B --> C{Stack boş mu?}
-    C -->|Evet| D[Bitti]
-    C -->|Hayır| E[Stack'ten düğüm çıkar]
-    E --> F{Düğüm ziyaret edildi mi?}
-    F -->|Hayır| G[Düğümü ziyaret et]
-    G --> H[Düğümün komşularını stack'e ekle]
-    H --> C
-    F -->|Evet| C
-```
+### 🎨 Görselleştirme
+- ✅ İnteraktif graf canvas
+- ✅ Düğüm renklendirme
+- ✅ Tıklama ile düğüm seçimi
+- ✅ Dairesel yerleşim algoritması
 
-### 2.3. Dijkstra Algoritması
+</td>
+</tr>
+<tr>
+<td>
 
-**Çalışma Mantığı:**
-Dijkstra algoritması, ağırlıklı graflarda iki düğüm arasındaki en kısa yolu bulur. Her adımda en kısa mesafeye sahip düğümü seçer ve komşularının mesafelerini günceller.
+### 🔧 Graf Yönetimi
+- ✅ Düğüm ekleme/silme/güncelleme
+- ✅ Kenar ekleme/silme
+- ✅ Dinamik ağırlık hesaplama
+- ✅ Yönsüz graf desteği
 
-**Karmaşıklık Analizi:**
-- Zaman Karmaşıklığı: O(V²) - basit implementasyon, O(V log V + E) - priority queue ile
-- Uzay Karmaşıklığı: O(V)
+</td>
+<td>
 
-**Akış Diyagramı:**
-```mermaid
-flowchart TD
-    A[Başla] --> B[Tüm düğümlere sonsuz mesafe ata]
-    B --> C[Başlangıç düğümüne 0 mesafe ata]
-    C --> D{İşlenmemiş düğüm var mı?}
-    D -->|Hayır| E[Bitti]
-    D -->|Evet| F[En kısa mesafeli düğümü seç]
-    F --> G{Hedef düğüme ulaşıldı mı?}
-    G -->|Evet| H[Yolu oluştur ve döndür]
-    G -->|Hayır| I[Düğümü işlenmiş olarak işaretle]
-    I --> J[Komşuların mesafelerini güncelle]
-    J --> D
-```
+### ⚙️ Algoritmalar
+- ✅ BFS & DFS gezinti
+- ✅ Dijkstra & A* kısa yol
+- ✅ Merkezilik analizi
+- ✅ Bağlı bileşenler & renklendirme
 
-### 2.4. A* Algoritması
+</td>
+</tr>
+</table>
 
-**Çalışma Mantığı:**
-A* algoritması, Dijkstra'nın geliştirilmiş halidir. Sezgisel (heuristic) fonksiyon kullanarak daha az düğüm ziyaret eder. f(n) = g(n) + h(n) formülü kullanılır.
+---
 
-**Karmaşıklık Analizi:**
-- Zaman Karmaşıklığı: O(b^d) - b: branching factor, d: derinlik
-- Uzay Karmaşıklığı: O(b^d)
+## 🚀 Kurulum
 
-**Akış Diyagramı:**
-```mermaid
-flowchart TD
-    A[Başla] --> B[Başlangıç düğümünü open set'e ekle]
-    B --> C{Open set boş mu?}
-    C -->|Evet| D[Yol bulunamadı]
-    C -->|Hayır| E[En düşük f(n) değerine sahip düğümü seç]
-    E --> F{Hedef düğüm mü?}
-    F -->|Evet| G[Yolu oluştur ve döndür]
-    F -->|Hayır| H[Düğümü closed set'e taşı]
-    H --> I[Komşuları kontrol et]
-    I --> J{Komşu closed set'te mi?}
-    J -->|Evet| C
-    J -->|Hayır| K[g ve f değerlerini hesapla]
-    K --> L{Yeni yol daha iyi mi?}
-    L -->|Evet| M[Komşuyu open set'e ekle/güncelle]
-    M --> C
-    L -->|Hayır| C
-```
+### Gereksinimler
 
-### 2.5. Bağlı Bileşenler (Connected Components)
+| Gereksinim | Versiyon |
+|------------|----------|
+| .NET SDK | 10.0+ |
+| Windows | 10/11 |
+| Visual Studio | 2022+ (opsiyonel) |
 
-**Çalışma Mantığı:**
-DFS kullanarak grafiğin tüm bağlı bileşenlerini bulur. Her bileşen, birbirine ulaşılabilir düğümlerden oluşur.
+### Hızlı Başlangıç
 
-**Karmaşıklık Analizi:**
-- Zaman Karmaşıklığı: O(V + E)
-- Uzay Karmaşıklığı: O(V)
+```bash
+# 1. Projeyi klonlayın
+git clone https://github.com/username/SocialNetworkAnalysis.git
 
-### 2.6. Merkezilik (Degree Centrality)
+# 2. Proje dizinine gidin
+cd SocialNetworkAnalysis
 
-**Çalışma Mantığı:**
-Her düğümün komşu sayısını hesaplar. En yüksek komşu sayısına sahip düğümler en merkezi düğümlerdir.
-
-**Karmaşıklık Analizi:**
-- Zaman Karmaşıklığı: O(V)
-- Uzay Karmaşıklığı: O(V)
-
-### 2.7. Welsh-Powell Renklendirme Algoritması
-
-**Çalışma Mantığı:**
-1. Düğümleri derecelerine göre azalan sırada sıralar
-2. Her düğüm için komşularının renklerini kontrol eder
-3. En küçük uygun rengi atar
-4. Her bağlı bileşen için ayrı ayrı renklendirme yapar
-
-**Karmaşıklık Analizi:**
-- Zaman Karmaşıklığı: O(V² + E)
-- Uzay Karmaşıklığı: O(V)
-
-**Akış Diyagramı:**
-```mermaid
-flowchart TD
-    A[Başla] --> B[Düğümleri dereceye göre sırala]
-    B --> C[Her düğüm için]
-    C --> D{Komşuların renklerini kontrol et}
-    D --> E[En küçük uygun rengi bul]
-    E --> F[Düğüme rengi ata]
-    F --> G{Tüm düğümler renklendirildi mi?}
-    G -->|Hayır| C
-    G -->|Evet| H[Bitti]
+# 3. Uygulamayı çalıştırın
+dotnet run --project SocialNetworkAnalysis.UI
 ```
 
 ---
 
-## 3. Sınıf Yapısı ve Modüller
+## 📖 Kullanım
 
-### 3.1. Sınıf Diyagramı
+### 1️⃣ Veri Yükleme
+
+```csv
+Id,Name,Activity,Interaction,ConnectionCount,Neighbors
+1,Ali,10,10,10,2;3
+2,Veli,20,20,20,1;4
+3,Can,15,15,15,1;4
+```
+
+> **💡 İpucu:** `test_small.csv` veya `test_medium.csv` dosyalarını örnek olarak kullanabilirsiniz.
+
+### 2️⃣ Algoritma Çalıştırma
+
+1. Canvas üzerinde bir düğüme tıklayarak **kaynak** seçin
+2. Gerekirse ikinci düğüme tıklayarak **hedef** seçin
+3. İlgili algoritma butonuna tıklayın
+4. Sonuçlar bilgi panelinde görüntülenir
+
+### 3️⃣ Graf Düzenleme
+
+| İşlem | Adımlar |
+|-------|---------|
+| **Düğüm Ekle** | `Düğüm Ekle` → Bilgileri girin → `Tamam` |
+| **Düğüm Sil** | Düğüme tıklayın → `Düğüm Sil` |
+| **Kenar Ekle** | `Kenar Ekle` → Kaynak ve hedef seçin |
+
+---
+
+## 🔬 Algoritmalar
+
+### 🔍 Graf Gezinti
+
+<details>
+<summary><b>BFS (Breadth-First Search)</b></summary>
+
+**Çalışma Mantığı:** Başlangıç düğümünden başlayarak önce tüm komşuları, sonra komşuların komşularını ziyaret eder.
+
+| Metrik | Değer |
+|--------|-------|
+| Zaman Karmaşıklığı | O(V + E) |
+| Uzay Karmaşıklığı | O(V) |
+| Veri Yapısı | Queue (Kuyruk) |
+
+```mermaid
+flowchart LR
+    A[Başla] --> B[Queue'ya ekle]
+    B --> C{Queue boş?}
+    C -->|Hayır| D[Düğümü çıkar]
+    D --> E[Komşuları ekle]
+    E --> C
+    C -->|Evet| F[Bitti]
+```
+
+</details>
+
+<details>
+<summary><b>DFS (Depth-First Search)</b></summary>
+
+**Çalışma Mantığı:** Mümkün olduğunca derine iner, geri dönüş yaparak diğer dalları keşfeder.
+
+| Metrik | Değer |
+|--------|-------|
+| Zaman Karmaşıklığı | O(V + E) |
+| Uzay Karmaşıklığı | O(V) |
+| Veri Yapısı | Stack (Yığın) |
+
+```mermaid
+flowchart LR
+    A[Başla] --> B[Stack'e ekle]
+    B --> C{Stack boş?}
+    C -->|Hayır| D[Düğümü çıkar]
+    D --> E[Komşuları ekle]
+    E --> C
+    C -->|Evet| F[Bitti]
+```
+
+</details>
+
+### 🛤️ En Kısa Yol
+
+<details>
+<summary><b>Dijkstra Algoritması</b></summary>
+
+**Çalışma Mantığı:** Her adımda en kısa mesafeye sahip düğümü seçer ve komşularının mesafelerini günceller.
+
+| Metrik | Değer |
+|--------|-------|
+| Zaman Karmaşıklığı | O(V²) / O(V log V + E)* |
+| Uzay Karmaşıklığı | O(V) |
+| Kullanım | Ağırlıklı graflar |
+
+> *Priority queue ile optimize edildiğinde
+
+```mermaid
+flowchart TD
+    A[Başla] --> B[Mesafeleri ∞ yap]
+    B --> C[Başlangıca 0 ata]
+    C --> D{Düğüm kaldı mı?}
+    D -->|Evet| E[En yakını seç]
+    E --> F[Komşuları güncelle]
+    F --> D
+    D -->|Hayır| G[Bitti]
+```
+
+</details>
+
+<details>
+<summary><b>A* Algoritması</b></summary>
+
+**Çalışma Mantığı:** Dijkstra'nın geliştirilmiş hali. Sezgisel fonksiyon ile daha az düğüm ziyaret eder.
+
+**Formül:** `f(n) = g(n) + h(n)`
+
+| Sembol | Açıklama |
+|--------|----------|
+| f(n) | Toplam maliyet tahmini |
+| g(n) | Başlangıçtan n'e maliyet |
+| h(n) | n'den hedefe tahmin |
+
+</details>
+
+### 📈 Analiz Algoritmaları
+
+<details>
+<summary><b>Merkezilik (Degree Centrality)</b></summary>
+
+Her düğümün komşu sayısını hesaplar. En yüksek değere sahip düğümler ağın merkezindedir.
+
+| Metrik | Değer |
+|--------|-------|
+| Zaman Karmaşıklığı | O(V) |
+| Uzay Karmaşıklığı | O(V) |
+
+</details>
+
+<details>
+<summary><b>Bağlı Bileşenler</b></summary>
+
+DFS kullanarak grafiğin tüm bağlı bileşenlerini bulur.
+
+| Metrik | Değer |
+|--------|-------|
+| Zaman Karmaşıklığı | O(V + E) |
+| Uzay Karmaşıklığı | O(V) |
+
+</details>
+
+<details>
+<summary><b>Welsh-Powell Renklendirme</b></summary>
+
+Komşu düğümlerin farklı renklerde olmasını sağlayan graf boyama algoritması.
+
+**Adımlar:**
+1. Düğümleri dereceye göre sırala
+2. Her düğüm için en küçük uygun rengi bul
+3. Rengi ata
+
+| Metrik | Değer |
+|--------|-------|
+| Zaman Karmaşıklığı | O(V² + E) |
+| Uzay Karmaşıklığı | O(V) |
+
+</details>
+
+---
+
+## 🏗️ Mimari
+
+### Sınıf Diyagramı
 
 ```mermaid
 classDiagram
+    direction TB
+    
     class Node {
         +string Id
         +string Name
         +double Activity
         +double Interaction
-        +double ConnectionCount
         +List~string~ Neighbors
     }
     
@@ -196,15 +293,11 @@ classDiagram
     }
     
     class Graph {
-        +Dictionary~string,Node~ Nodes
-        +List~Edge~ Edges
-        +AddNode(Node)
-        +AddEdge(string, string, double)
-        +RemoveNode(string)
-        +RemoveEdge(string, string)
-        +UpdateNode(string, ...)
-        +GetAdjacencyMatrix()
-        +GetAdjacencyList()
+        +Dictionary Nodes
+        +List Edges
+        +AddNode()
+        +AddEdge()
+        +RemoveNode()
     }
     
     class IAlgorithm {
@@ -214,253 +307,113 @@ classDiagram
     
     class IGraphTraversalAlgorithm {
         <<interface>>
-        +Traverse(Graph, string)
+        +Traverse()
     }
     
     class IShortestPathAlgorithm {
         <<interface>>
-        +FindPath(Graph, string, string)
+        +FindPath()
     }
     
-    class IColoringAlgorithm {
-        <<interface>>
-        +ColorGraph(Graph)
-        +GetColorGroups(Graph)
-    }
-    
-    class BfsAlgorithm {
-        +Traverse(Graph, string)
-        +Execute(Graph, string)
-    }
-    
-    class DfsAlgorithm {
-        +Traverse(Graph, string)
-        +Execute(Graph, string)
-    }
-    
-    class DijkstraAlgorithm {
-        +FindPath(Graph, string, string)
-        +Dijkstra(Graph, string, string)
-    }
-    
-    class AStarAlgorithm {
-        +FindPath(Graph, string, string)
-        +AStar(Graph, string, string, Func)
-    }
-    
-    class CentralityAlgorithm {
-        +CalculateDegreeCentrality(Graph, int)
-    }
-    
-    class ConnectedComponentsAlgorithm {
-        +FindComponents(Graph)
-        +GetComponentCount(Graph)
-    }
-    
-    class WelshPowellColoringAlgorithm {
-        +ColorGraph(Graph)
-        +ColorGraphByComponents(Graph)
-        +GetColorGroups(Graph)
-    }
-    
-    class WeightCalculator {
-        +CalculateWeight(Node, Node)
-    }
-    
-    class FileService {
-        +LoadGraphFromCsv(string)
-        +SaveGraphToCsv(Graph, string)
-        +SaveAdjacencyMatrixToCsv(Graph, string)
-        +SaveAdjacencyListToCsv(Graph, string)
-    }
-    
-    class JsonFileService {
-        +LoadGraphFromJson(string)
-        +SaveGraphToJson(Graph, string)
-    }
-    
-    Node --> Graph
-    Edge --> Graph
-    IAlgorithm <|.. IGraphTraversalAlgorithm
-    IAlgorithm <|.. IShortestPathAlgorithm
-    IAlgorithm <|.. IColoringAlgorithm
-    IGraphTraversalAlgorithm <|.. BfsAlgorithm
-    IGraphTraversalAlgorithm <|.. DfsAlgorithm
-    IShortestPathAlgorithm <|.. DijkstraAlgorithm
-    IShortestPathAlgorithm <|.. AStarAlgorithm
-    IColoringAlgorithm <|.. WelshPowellColoringAlgorithm
-    Graph --> WeightCalculator
+    Node --o Graph
+    Edge --o Graph
+    IAlgorithm <|-- IGraphTraversalAlgorithm
+    IAlgorithm <|-- IShortestPathAlgorithm
 ```
 
-### 3.2. Modül Açıklamaları
+### Proje Yapısı
 
-#### Core Modülü
-- **Node.cs:** Düğüm veri yapısı
-- **Edge.cs:** Kenar veri yapısı
-- **Graph.cs:** Graf veri yapısı ve yönetimi
-- **WeightCalculator.cs:** Dinamik ağırlık hesaplama
-- **IAlgorithm.cs:** Algoritma arayüzleri
-- **BfsAlgorithm.cs, DfsAlgorithm.cs:** Gezinti algoritmaları
-- **DijkstraAlgorithm.cs, AStarAlgorithm.cs:** En kısa yol algoritmaları
-- **CentralityAlgorithm.cs:** Merkezilik analizi
-- **ConnectedComponentsAlgorithm.cs:** Bağlı bileşen tespiti
-- **WelshPowellColoringAlgorithm.cs:** Graf renklendirme
-- **FileService.cs:** CSV dosya işlemleri
-- **JsonFileService.cs:** JSON dosya işlemleri
-
-#### UI Modülü
-- **MainWindow.xaml/cs:** Ana pencere ve görselleştirme
-- **NodeDialog.xaml/cs:** Düğüm ekleme/güncelleme diyaloğu
-- **EdgeDialog.xaml/cs:** Kenar ekleme/silme diyaloğu
+```
+📦 SocialNetworkAnalysis
+├── 📂 SocialNetworkAnalysis.Core/
+│   ├── 📄 Node.cs              # Düğüm modeli
+│   ├── 📄 Edge.cs              # Kenar modeli
+│   ├── 📄 Graph.cs             # Graf veri yapısı
+│   ├── 📄 BfsAlgorithm.cs      # BFS implementasyonu
+│   ├── 📄 DfsAlgorithm.cs      # DFS implementasyonu
+│   ├── 📄 ShortestPathAlgorithm.cs  # Dijkstra
+│   ├── 📄 AStarAlgorithm.cs    # A* algoritması
+│   ├── 📄 CentralityAlgorithm.cs
+│   ├── 📄 ConnectedComponentsAlgorithm.cs
+│   ├── 📄 WelshPowellColoringAlgorithm.cs
+│   ├── 📄 FileService.cs       # CSV işlemleri
+│   └── 📄 JsonFileService.cs   # JSON işlemleri
+│
+└── 📂 SocialNetworkAnalysis.UI/
+    ├── 📄 MainWindow.xaml      # Ana pencere UI
+    ├── 📄 MainWindow.xaml.cs   # UI mantığı
+    ├── 📄 NodeDialog.xaml      # Düğüm ekleme dialogu
+    └── 📄 EdgeDialog.xaml      # Kenar ekleme dialogu
+```
 
 ---
 
-## 4. Özellikler
+## 📊 Test Sonuçları
 
-### 4.1. Veri Yükleme ve Kaydetme
-- ✅ CSV formatında veri yükleme
-- ✅ JSON formatında veri yükleme
-- ✅ CSV formatında kaydetme
-- ✅ JSON formatında kaydetme
-- ✅ Komşuluk matrisi export
-- ✅ Komşuluk listesi export
+### Performans Karşılaştırması
 
-### 4.2. Görselleştirme
-- ✅ Düğümlerin canvas üzerinde gösterilmesi
-- ✅ Kenarların çizilmesi
-- ✅ Renklendirme ile görselleştirme
-- ✅ Düğüme tıklayarak bilgi gösterme
+| Algoritma | 20 Düğüm | 100 Düğüm | Ölçeklenme |
+|-----------|:--------:|:---------:|:----------:|
+| **BFS** | 1-2 ms | 4-6 ms | ✅ Mükemmel |
+| **DFS** | 1-2 ms | 4-6 ms | ✅ Mükemmel |
+| **Dijkstra** | 2-3 ms | 15-25 ms | ✅ İyi |
+| **A*** | 2-3 ms | 12-20 ms | ✅ İyi |
+| **Merkezilik** | 1 ms | 3-5 ms | ✅ Mükemmel |
+| **Bağlı Bileşenler** | 1-2 ms | 8-12 ms | ✅ İyi |
+| **Welsh-Powell** | 3-4 ms | 25-40 ms | ✅ Kabul edilebilir |
 
-### 4.3. Düğüm/Kenar Yönetimi
-- ✅ Düğüm ekleme
-- ✅ Düğüm silme
-- ✅ Düğüm güncelleme
-- ✅ Kenar ekleme
-- ✅ Kenar silme
+### Hata Kontrolü Testleri
 
-### 4.4. Algoritmalar
-- ✅ BFS (Breadth-First Search)
-- ✅ DFS (Depth-First Search)
-- ✅ Dijkstra
-- ✅ A* (A Star)
-- ✅ Merkezilik (Degree Centrality)
-- ✅ Bağlı Bileşenler
-- ✅ Welsh-Powell Renklendirme
+| Test Senaryosu | Durum |
+|----------------|:-----:|
+| Aynı ID'li düğüm ekleme | ✅ Engellendi |
+| Self-loop oluşturma | ✅ Engellendi |
+| Geçersiz düğüm ID'si | ✅ Hata mesajı |
+| Tekrarlanan kenar | ✅ Engellendi |
+| Boş ID ile düğüm ekleme | ✅ Kontrol edildi |
 
-### 4.5. Dinamik Ağırlık Hesaplama
+> 📋 **Detaylı sonuçlar:** [TEST_SONUCLARI.md](TEST_SONUCLARI.md)
+
+---
+
+## 🧮 Dinamik Ağırlık Hesaplama
+
 Kenar ağırlıkları aşağıdaki formül ile hesaplanır:
 
-$$Weight_{i,j} = \frac{1}{1 + \sqrt{(Activity_i - Activity_j)^2 + (Interaction_i - Interaction_j)^2 + (ConnectionCount_i - ConnectionCount_j)^2}}$$
+$$Weight_{i,j} = \frac{1}{1 + \sqrt{(A_i - A_j)^2 + (I_i - I_j)^2 + (C_i - C_j)^2}}$$
+
+| Değişken | Açıklama |
+|----------|----------|
+| A | Activity (Etkinlik puanı) |
+| I | Interaction (Etkileşim puanı) |
+| C | ConnectionCount (Bağlantı sayısı) |
 
 ---
 
-## 5. Kurulum ve Çalıştırma
+## 🔮 Gelecek Geliştirmeler
 
-### Gereksinimler
-- .NET 10.0 SDK
-- Visual Studio 2022 veya uyumlu IDE
-
-### Kurulum Adımları
-1. Projeyi klonlayın veya indirin
-2. Visual Studio ile `SocialNetworkAnalysis.sln` dosyasını açın
-3. Projeyi derleyin (Build Solution)
-4. `SocialNetworkAnalysis.UI` projesini başlangıç projesi olarak ayarlayın
-5. Projeyi çalıştırın (F5)
+- [ ] Force-directed layout algoritması
+- [ ] Zoom ve pan özellikleri
+- [ ] Betweenness/Closeness centrality
+- [ ] Louvain topluluk tespiti
+- [ ] Animasyonlu algoritma görselleştirme
+- [ ] Büyük veri optimizasyonları
 
 ---
 
-## 6. Kullanım
+## 📚 Kaynaklar
 
-### 6.1. Veri Yükleme
-1. "CSV Yükle" veya "JSON Yükle" butonuna tıklayın
-2. Dosya seçim diyaloğundan uygun formatlı dosyayı seçin
-3. Graf otomatik olarak yüklenecek ve görselleştirilecektir
-
-### 6.2. Algoritma Çalıştırma
-1. Canvas üzerinde bir düğüme tıklayarak kaynak/hedef seçin
-2. İlgili algoritma butonuna tıklayın
-3. Sonuçlar "Bilgi / Sonuçlar" panelinde gösterilecektir
-
-### 6.3. Düğüm/Kenar Yönetimi
-- **Düğüm Ekle:** "Düğüm Ekle" butonuna tıklayın ve bilgileri girin
-- **Düğüm Sil:** Bir düğüme tıklayın ve "Düğüm Sil" butonuna basın
-- **Düğüm Güncelle:** Bir düğüme tıklayın ve "Düğüm Güncelle" butonuna basın
-- **Kenar Ekle/Sil:** İlgili butonlara tıklayarak kaynak ve hedef seçin
+- [.NET Documentation](https://docs.microsoft.com/dotnet/)
+- [WPF Documentation](https://docs.microsoft.com/wpf/)
+- [Mermaid Diagrams](https://mermaid.js.org/)
+- [Graph Algorithms](https://en.wikipedia.org/wiki/Graph_algorithm)
 
 ---
 
-## 7. CSV Formatı
+<div align="center">
 
-Giriş CSV dosyası aşağıdaki formatı kullanmalıdır:
+📖 **Bu proje eğitim amaçlı geliştirilmiştir.**
 
-```csv
-Id,Name,Activity,Interaction,ConnectionCount,Neighbors
-1,Ali,10,10,10,2;3
-2,Veli,20,20,20,1;4
-3,Can,15,15,15,1;4
-```
+Made with ❤️ by Group 40
 
----
-
-## 8. Test Senaryoları ve Sonuçlar
-
-### Test 1: Küçük Ölçekli Graf (10-20 düğüm)
-- **Düğüm Sayısı:** 15
-- **Kenar Sayısı:** 25
-- **BFS Çalışma Süresi:** ~1 ms
-- **DFS Çalışma Süresi:** ~1 ms
-- **Dijkstra Çalışma Süresi:** ~2 ms
-- **A* Çalışma Süresi:** ~2 ms
-- **Merkezilik Çalışma Süresi:** ~1 ms
-- **Bağlı Bileşenler:** ~1 ms
-- **Renklendirme:** ~2 ms
-
-### Test 2: Orta Ölçekli Graf (50-100 düğüm)
-- **Düğüm Sayısı:** 75
-- **Kenar Sayısı:** 150
-- **BFS Çalışma Süresi:** ~5 ms
-- **DFS Çalışma Süresi:** ~5 ms
-- **Dijkstra Çalışma Süresi:** ~15 ms
-- **A* Çalışma Süresi:** ~12 ms
-- **Merkezilik Çalışma Süresi:** ~3 ms
-- **Bağlı Bileşenler:** ~8 ms
-- **Renklendirme:** ~25 ms
-
----
-
-## 9. Sonuç ve Tartışma
-
-### Başarılar
-- ✅ Tüm gereken algoritmalar başarıyla implement edildi
-- ✅ OOP prensipleri uygulandı (interface ve abstract yapılar)
-- ✅ Görselleştirme çalışıyor
-- ✅ JSON ve CSV desteği eklendi
-- ✅ Performans metrikleri ölçülüyor
-- ✅ Kullanıcı dostu arayüz
-
-### Sınırlılıklar
-- Görselleştirme için basit dairesel yerleşim kullanıldı (force-directed layout yerine)
-- Büyük ölçekli graflar için optimizasyon gerekebilir
-- A* için heuristic fonksiyonu basit tutuldu
-
-### Olası Geliştirmeler
-- Force-directed layout algoritması eklenebilir
-- Zoom ve pan özellikleri eklenebilir
-- Daha gelişmiş merkezilik metrikleri (betweenness, closeness)
-- Topluluk tespiti algoritmaları (Louvain, Girvan-Newman)
-- Animasyonlu algoritma görselleştirme
-- Büyük veri setleri için performans optimizasyonları
-
----
-
-## 10. Kaynaklar
-
-- [Markdown Guide](https://www.markdownguide.org/)
-- [Mermaid Diagrams](https://github.com/mermaid-js/mermaid)
-- [GitHub Mermaid Guide](https://github.blog/developer-skills/github/include-diagrams-markdown-files-mermaid/)
-
----
-
-## Lisans
-
-Bu proje eğitim amaçlı geliştirilmiştir.
+</div>

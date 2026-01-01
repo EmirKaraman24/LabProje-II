@@ -5,77 +5,486 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SocialNetworkAnalysis.UI"
         mc:Ignorable="d"
-        Title="Sosyal Ağ Analizi ve Görselleştirme" Height="800" Width="1200" 
-        WindowStartupLocation="CenterScreen">
+        Title="Sosyal Ağ Analizi ve Görselleştirme" Height="900" Width="1400" 
+        WindowStartupLocation="CenterScreen"
+        Background="#F5F7FA">
+    <Window.Resources>
+        <!-- Modern Button Style -->
+        <Style x:Key="ModernButton" TargetType="Button">
+            <Setter Property="Background" Value="#4A90E2"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10,6"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="5" 
+                                Padding="{TemplateBinding Padding}">
+                            <Border.Effect>
+                                <DropShadowEffect Color="#40000000" Direction="270" ShadowDepth="1" BlurRadius="3" Opacity="0.2"/>
+                            </Border.Effect>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#357ABD"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#2E6DA4"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Primary Button Style -->
+        <Style x:Key="PrimaryButton" TargetType="Button" BasedOn="{StaticResource ModernButton}">
+            <Setter Property="Background" Value="#5CB85C"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#4CAE4C"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Danger Button Style -->
+        <Style x:Key="DangerButton" TargetType="Button" BasedOn="{StaticResource ModernButton}">
+            <Setter Property="Background" Value="#D9534F"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#C9302C"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Warning Button Style -->
+        <Style x:Key="WarningButton" TargetType="Button" BasedOn="{StaticResource ModernButton}">
+            <Setter Property="Background" Value="#F0AD4E"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#EC971F"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Info Button Style -->
+        <Style x:Key="InfoButton" TargetType="Button" BasedOn="{StaticResource ModernButton}">
+            <Setter Property="Background" Value="#5BC0DE"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#46B8DA"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Compact Button Style for horizontal layout -->
+        <Style x:Key="CompactButton" TargetType="Button" BasedOn="{StaticResource ModernButton}">
+            <Setter Property="Padding" Value="8,4"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Height" Value="28"/>
+            <Setter Property="MinWidth" Value="0"/>
+        </Style>
+
+        <!-- Modern Expander Style -->
+        <Style x:Key="ModernExpander" TargetType="Expander">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E1E8ED"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Margin" Value="0,0,0,8"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Expander">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="6" 
+                                Background="{TemplateBinding Background}">
+                            <Border.Effect>
+                                <DropShadowEffect Color="#20000000" Direction="270" ShadowDepth="1" BlurRadius="2" Opacity="0.15"/>
+                            </Border.Effect>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <ToggleButton x:Name="HeaderSite" 
+                                              IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                              Cursor="Hand">
+                                    <ToggleButton.Template>
+                                        <ControlTemplate TargetType="ToggleButton">
+                                            <Border Background="#F8F9FA" CornerRadius="6,6,0,0" Padding="10,8">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <ContentPresenter Content="{TemplateBinding Content}" 
+                                                                      VerticalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="1" 
+                                                               x:Name="Arrow" 
+                                                               Text="▼" 
+                                                               FontSize="10" 
+                                                               Foreground="#7F8C8D"
+                                                               VerticalAlignment="Center"
+                                                               RenderTransformOrigin="0.5,0.5">
+                                                        <TextBlock.RenderTransform>
+                                                            <RotateTransform Angle="0"/>
+                                                        </TextBlock.RenderTransform>
+                                                    </TextBlock>
+                                                </Grid>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsChecked" Value="True">
+                                                    <Setter TargetName="Arrow" Property="RenderTransform">
+                                                        <Setter.Value>
+                                                            <RotateTransform Angle="180"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </ToggleButton.Template>
+                                    <ToggleButton.Content>
+                                        <TextBlock Text="{TemplateBinding Tag}" 
+                                                   FontWeight="Bold" 
+                                                   FontSize="12" 
+                                                   Foreground="#2C3E50"/>
+                                    </ToggleButton.Content>
+                                </ToggleButton>
+                                <ContentPresenter x:Name="ExpandSite" 
+                                                  Grid.Row="1"
+                                                  Visibility="Collapsed" 
+                                                  Margin="10,6,10,10"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsExpanded" Value="True">
+                                <Setter TargetName="ExpandSite" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Modern TextBox Style -->
+        <Style x:Key="ModernTextBox" TargetType="TextBox">
+            <Setter Property="Padding" Value="8,5"/>
+            <Setter Property="BorderBrush" Value="#D1D5DB"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Background" Value="#FAFBFC"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Height" Value="28"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="4"
+                                Padding="{TemplateBinding Padding}">
+                            <ScrollViewer x:Name="PART_ContentHost"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderBrush" Value="#4A90E2"/>
+                    <Setter Property="Background" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Modern RadioButton Style -->
+        <Style x:Key="ModernRadioButton" TargetType="RadioButton">
+            <Setter Property="Foreground" Value="#2C3E50"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Margin" Value="0,0,10,0"/>
+            <Setter Property="Padding" Value="3,0"/>
+        </Style>
+    </Window.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="320" />
         </Grid.ColumnDefinitions>
 
-        <!-- Left Side: Canvas -->
-        <Border Grid.Column="0" BorderBrush="Black" BorderThickness="1" Margin="10">
-            <Canvas x:Name="GraphCanvas" Background="White" MouseLeftButtonDown="GraphCanvas_MouseLeftButtonDown"/>
+        <!-- Left Side: Canvas with Modern Design -->
+        <Border Grid.Column="0" 
+                BorderBrush="#E1E8ED" 
+                BorderThickness="2" 
+                CornerRadius="12"
+                Margin="15,15,10,15"
+                Background="White">
+            <Border.Effect>
+                <DropShadowEffect Color="#30000000" Direction="270" ShadowDepth="3" BlurRadius="8" Opacity="0.15"/>
+            </Border.Effect>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <!-- Canvas Header -->
+                <Border Grid.Row="0">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                            <GradientStop Color="#667EEA" Offset="0"/>
+                            <GradientStop Color="#764BA2" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <TextBlock Text="📊 Graf Görselleştirme" 
+                               FontSize="15" 
+                               FontWeight="Bold" 
+                               Foreground="White" 
+                               Padding="15,10"
+                               VerticalAlignment="Center"/>
+                </Border>
+                <Canvas x:Name="GraphCanvas" 
+                        Grid.Row="1"
+                        Background="#FAFBFC" 
+                        MouseLeftButtonDown="GraphCanvas_MouseLeftButtonDown"/>
+            </Grid>
         </Border>
 
-        <!-- Right Side: Controls -->
-        <StackPanel Grid.Column="1" Margin="10">
-            <!-- File Operations -->
-            <GroupBox Header="Dosya İşlemleri" Margin="0,0,0,10">
-                <StackPanel Margin="5">
-                    <Button x:Name="BtnLoadCsv" Content="CSV Yükle" Height="30" Margin="0,0,0,5" Click="BtnLoadCsv_Click"/>
-                    <Button x:Name="BtnLoadJson" Content="JSON Yükle" Height="30" Margin="0,0,0,5" Click="BtnLoadJson_Click"/>
-                    <Button x:Name="BtnSaveCsv" Content="CSV Kaydet" Height="30" Margin="0,0,0,5" Click="BtnSaveCsv_Click"/>
-                    <Button x:Name="BtnSaveJson" Content="JSON Kaydet" Height="30" Margin="0,0,0,5" Click="BtnSaveJson_Click"/>
-                    <Button x:Name="BtnExportMatrix" Content="Komşuluk Matrisi Export" Height="30" Margin="0,0,0,5" Click="BtnExportMatrix_Click"/>
-                    <Button x:Name="BtnExportList" Content="Komşuluk Listesi Export" Height="30" Click="BtnExportList_Click"/>
-                </StackPanel>
-            </GroupBox>
+        <!-- Right Side: Modern Controls with Expanders -->
+        <ScrollViewer Grid.Column="1" 
+                      VerticalScrollBarVisibility="Auto" 
+                      HorizontalScrollBarVisibility="Disabled"
+                      Margin="0,15,15,15">
+            <StackPanel>
+                <!-- File Operations -->
+                <Expander Style="{StaticResource ModernExpander}" Tag="📁 Dosya İşlemleri" IsExpanded="True">
+                    <StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="BtnLoadCsv" 
+                                    Content="📄 CSV Yükle" 
+                                    Style="{StaticResource PrimaryButton}" 
+                                    Margin="0,0,3,5" 
+                                    Click="BtnLoadCsv_Click"/>
+                            <Button x:Name="BtnLoadJson" 
+                                    Content="📋 JSON Yükle" 
+                                    Style="{StaticResource PrimaryButton}" 
+                                    Grid.Column="1"
+                                    Margin="3,0,0,5" 
+                                    Click="BtnLoadJson_Click"/>
+                        </Grid>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="BtnSaveCsv" 
+                                    Content="💾 CSV Kaydet" 
+                                    Style="{StaticResource InfoButton}" 
+                                    Margin="0,0,3,5" 
+                                    Click="BtnSaveCsv_Click"/>
+                            <Button x:Name="BtnSaveJson" 
+                                    Content="💾 JSON Kaydet" 
+                                    Style="{StaticResource InfoButton}"
+                                    Grid.Column="1"
+                                    Margin="3,0,0,5" 
+                                    Click="BtnSaveJson_Click"/>
+                        </Grid>
+                        <Separator Margin="0,3" Background="#E1E8ED"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="BtnExportMatrix" 
+                                    Content="📊 Matris" 
+                                    Style="{StaticResource ModernButton}" 
+                                    Margin="0,0,3,0" 
+                                    Click="BtnExportMatrix_Click"/>
+                            <Button x:Name="BtnExportList" 
+                                    Content="📋 Liste"
+                                    Grid.Column="1"
+                                    Style="{StaticResource ModernButton}" 
+                                    Margin="3,0,0,0" 
+                                    Click="BtnExportList_Click"/>
+                        </Grid>
+                    </StackPanel>
+                </Expander>
 
-            <!-- Node/Edge Management -->
-            <GroupBox Header="Düğüm/Kenar Yönetimi" Margin="0,0,0,10">
-                <StackPanel Margin="5">
-                    <Button x:Name="BtnAddNode" Content="Düğüm Ekle" Height="25" Margin="0,0,0,5" Click="BtnAddNode_Click"/>
-                    <Button x:Name="BtnRemoveNode" Content="Düğüm Sil" Height="25" Margin="0,0,0,5" Click="BtnRemoveNode_Click"/>
-                    <Button x:Name="BtnUpdateNode" Content="Düğüm Güncelle" Height="25" Margin="0,0,0,5" Click="BtnUpdateNode_Click"/>
-                    <Separator Margin="0,5"/>
-                    <Button x:Name="BtnAddEdge" Content="Kenar Ekle" Height="25" Margin="0,0,0,5" Click="BtnAddEdge_Click"/>
-                    <Button x:Name="BtnRemoveEdge" Content="Kenar Sil" Height="25" Click="BtnRemoveEdge_Click"/>
-                </StackPanel>
-            </GroupBox>
+                <!-- Node/Edge Management -->
+                <Expander Style="{StaticResource ModernExpander}" Tag="🔧 Düğüm/Kenar Yönetimi" IsExpanded="True">
+                    <StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="BtnAddNode" 
+                                    Content="➕ Ekle" 
+                                    Style="{StaticResource PrimaryButton}" 
+                                    Margin="0,0,2,5" 
+                                    Click="BtnAddNode_Click"/>
+                            <Button x:Name="BtnRemoveNode" 
+                                    Content="➖ Sil" 
+                                    Style="{StaticResource DangerButton}" 
+                                    Grid.Column="1"
+                                    Margin="2,0,2,5" 
+                                    Click="BtnRemoveNode_Click"/>
+                            <Button x:Name="BtnUpdateNode" 
+                                    Content="✏️ Güncelle" 
+                                    Style="{StaticResource WarningButton}" 
+                                    Grid.Column="2"
+                                    Margin="2,0,0,5" 
+                                    Click="BtnUpdateNode_Click"/>
+                        </Grid>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="BtnAddEdge" 
+                                    Content="🔗 Kenar Ekle" 
+                                    Style="{StaticResource PrimaryButton}" 
+                                    Margin="0,0,3,0" 
+                                    Click="BtnAddEdge_Click"/>
+                            <Button x:Name="BtnRemoveEdge" 
+                                    Content="✂️ Kenar Sil" 
+                                    Style="{StaticResource DangerButton}"
+                                    Grid.Column="1"
+                                    Margin="3,0,0,0"
+                                    Click="BtnRemoveEdge_Click"/>
+                        </Grid>
+                    </StackPanel>
+                </Expander>
 
-            <!-- Algorithms -->
-            <GroupBox Header="Algoritmalar" Margin="0,0,0,10">
-                <StackPanel Margin="5">
-                    <TextBlock Text="Seçim Modu:" FontWeight="Bold" Margin="0,0,0,5"/>
-                    <RadioButton x:Name="RadioSource" Content="Başlangıç (Kaynak) Seç" IsChecked="True" Margin="0,0,0,2"/>
-                    <RadioButton x:Name="RadioTarget" Content="Bitiş (Hedef) Seç" Margin="0,0,0,5"/>
+                <!-- Algorithms -->
+                <Expander Style="{StaticResource ModernExpander}" Tag="⚙️ Algoritmalar" IsExpanded="True">
+                    <StackPanel>
+                        <!-- Selection Mode -->
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            <RadioButton x:Name="RadioSource" 
+                                         Content="📍 Kaynak" 
+                                         Style="{StaticResource ModernRadioButton}" 
+                                         IsChecked="True"/>
+                            <RadioButton x:Name="RadioTarget" 
+                                         Content="🎯 Hedef" 
+                                         Style="{StaticResource ModernRadioButton}"/>
+                        </StackPanel>
 
-                    <TextBlock Text="Kaynak ID:" Margin="0,5,0,0"/>
-                    <TextBox x:Name="TxtSourceId" IsReadOnly="True" Background="#EEE" Margin="0,0,0,5"/>
+                        <Grid Margin="0,0,0,8">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Kaynak:" FontSize="10" Foreground="#5A6C7D" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                            <TextBox x:Name="TxtSourceId" 
+                                     Grid.Column="1"
+                                     IsReadOnly="True" 
+                                     Style="{StaticResource ModernTextBox}" 
+                                     Background="#F0F2F5"
+                                     Margin="0,0,8,0"/>
+                            <TextBlock Text="Hedef:" Grid.Column="2" FontSize="10" Foreground="#5A6C7D" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                            <TextBox x:Name="TxtTargetId" 
+                                     Grid.Column="3"
+                                     IsReadOnly="True" 
+                                     Style="{StaticResource ModernTextBox}" 
+                                     Background="#F0F2F5"/>
+                        </Grid>
 
-                    <TextBlock Text="Hedef ID:" Margin="0,5,0,0"/>
-                    <TextBox x:Name="TxtTargetId" IsReadOnly="True" Background="#EEE" Margin="0,0,0,10"/>
+                        <TextBlock Text="🔍 Gezinti" FontSize="10" FontWeight="SemiBold" Foreground="#7F8C8D" Margin="0,0,0,5"/>
+                        <Grid Margin="0,0,0,8">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="BtnBfs" 
+                                    Content="🔵 BFS" 
+                                    Style="{StaticResource ModernButton}" 
+                                    Margin="0,0,3,0" 
+                                    Click="BtnBfs_Click"/>
+                            <Button x:Name="BtnDfs" 
+                                    Content="🟢 DFS" 
+                                    Grid.Column="1"
+                                    Style="{StaticResource ModernButton}" 
+                                    Margin="3,0,0,0" 
+                                    Click="BtnDfs_Click"/>
+                        </Grid>
 
-                    <Button x:Name="BtnBfs" Content="BFS (Gezinti)" Height="25" Margin="0,0,0,5" Click="BtnBfs_Click"/>
-                    <Button x:Name="BtnDfs" Content="DFS (Gezinti)" Height="25" Margin="0,0,0,5" Click="BtnDfs_Click"/>
-                    <Separator Margin="0,5"/>
-                    <Button x:Name="BtnDijkstra" Content="Dijkstra (En Kısa Yol)" Height="25" Margin="0,0,0,5" Click="BtnDijkstra_Click"/>
-                    <Button x:Name="BtnAStar" Content="A* (En Kısa Yol)" Height="25" Margin="0,0,0,5" Click="BtnAStar_Click"/>
-                    <Separator Margin="0,5"/>
-                    <Button x:Name="BtnCentrality" Content="Merkezilik (Centrality)" Height="25" Margin="0,0,0,5" Click="BtnCentrality_Click"/>
-                    <Separator Margin="0,5"/>
-                    <Button x:Name="BtnConnectedComponents" Content="Bağlı Bileşenler" Height="25" Margin="0,0,0,5" Click="BtnConnectedComponents_Click"/>
-                    <Button x:Name="BtnColoring" Content="Welsh-Powell Renklendirme" Height="25" Click="BtnColoring_Click"/>
-                </StackPanel>
-            </GroupBox>
+                        <TextBlock Text="🛤️ En Kısa Yol" FontSize="10" FontWeight="SemiBold" Foreground="#7F8C8D" Margin="0,0,0,5"/>
+                        <Grid Margin="0,0,0,8">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="BtnDijkstra" 
+                                    Content="⚡ Dijkstra" 
+                                    Style="{StaticResource InfoButton}" 
+                                    Margin="0,0,3,0" 
+                                    Click="BtnDijkstra_Click"/>
+                            <Button x:Name="BtnAStar" 
+                                    Content="⭐ A*" 
+                                    Grid.Column="1"
+                                    Style="{StaticResource InfoButton}" 
+                                    Margin="3,0,0,0" 
+                                    Click="BtnAStar_Click"/>
+                        </Grid>
 
-            <!-- Info Panel -->
-            <GroupBox Header="Bilgi / Sonuçlar" Height="200">
-                <ScrollViewer>
-                    <TextBlock x:Name="TxtInfo" TextWrapping="Wrap" Margin="5"/>
-                </ScrollViewer>
-            </GroupBox>
-        </StackPanel>
+                        <TextBlock Text="📈 Analiz" FontSize="10" FontWeight="SemiBold" Foreground="#7F8C8D" Margin="0,0,0,5"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="BtnCentrality" 
+                                    Content="🎯 Merkez" 
+                                    Style="{StaticResource WarningButton}" 
+                                    Margin="0,0,2,0" 
+                                    Click="BtnCentrality_Click"/>
+                            <Button x:Name="BtnConnectedComponents" 
+                                    Content="🔗 Bileşen" 
+                                    Grid.Column="1"
+                                    Style="{StaticResource WarningButton}" 
+                                    Margin="2,0,2,0" 
+                                    Click="BtnConnectedComponents_Click"/>
+                            <Button x:Name="BtnColoring" 
+                                    Content="🎨 Renk" 
+                                    Grid.Column="2"
+                                    Style="{StaticResource WarningButton}" 
+                                    Margin="2,0,0,0"
+                                    Click="BtnColoring_Click"/>
+                        </Grid>
+                    </StackPanel>
+                </Expander>
+
+                <!-- Info Panel -->
+                <Expander Style="{StaticResource ModernExpander}" Tag="ℹ️ Bilgi / Sonuçlar" IsExpanded="True">
+                    <Border Background="#F8F9FA" 
+                            CornerRadius="4" 
+                            Padding="8"
+                            MinHeight="150"
+                            MaxHeight="250">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" 
+                                      HorizontalScrollBarVisibility="Disabled">
+                            <TextBlock x:Name="TxtInfo" 
+                                       TextWrapping="Wrap" 
+                                       FontSize="11" 
+                                       Foreground="#2C3E50"
+                                       LineHeight="18"
+                                       Text="Graf yüklemek için 'CSV Yükle' veya 'JSON Yükle' butonuna tıklayın.&#x0a;&#x0a;Algoritmaları çalıştırmak için önce bir graf yükleyin ve düğüm seçin."/>
+                        </ScrollViewer>
+                    </Border>
+                </Expander>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Window>
