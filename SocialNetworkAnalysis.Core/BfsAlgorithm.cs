@@ -5,8 +5,18 @@ namespace SocialNetworkAnalysis.Core
     /// <summary>
     /// Genişlik Öncelikli Arama (BFS) algoritmasını uygular.
     /// </summary>
-    public class BfsAlgorithm
+    public class BfsAlgorithm : IGraphTraversalAlgorithm
     {
+        public string Name => "BFS (Breadth-First Search)";
+
+        /// <summary>
+        /// Başlangıç düğümünden itibaren grafiği gezer ve ziyaret edilen düğümleri döndürür.
+        /// </summary>
+        public List<Node> Traverse(Graph graph, string startNodeId)
+        {
+            return Execute(graph, startNodeId);
+        }
+
         /// <summary>
         /// Başlangıç düğümünden itibaren grafiği gezer ve ziyaret edilen düğümleri döndürür.
         /// </summary>

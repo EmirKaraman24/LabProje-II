@@ -5,8 +5,18 @@ namespace SocialNetworkAnalysis.Core
     /// <summary>
     /// Derinlik Öncelikli Arama (DFS) algoritmasını uygular.
     /// </summary>
-    public class DfsAlgorithm
+    public class DfsAlgorithm : IGraphTraversalAlgorithm
     {
+        public string Name => "DFS (Depth-First Search)";
+
+        /// <summary>
+        /// Başlangıç düğümünden itibaren grafiği derinlemesine gezer.
+        /// </summary>
+        public List<Node> Traverse(Graph graph, string startNodeId)
+        {
+            return Execute(graph, startNodeId);
+        }
+
         /// <summary>
         /// Başlangıç düğümünden itibaren grafiği derinlemesine gezer.
         /// </summary>

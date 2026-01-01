@@ -7,8 +7,9 @@ namespace SocialNetworkAnalysis.Core
     /// <summary>
     /// Ağdaki düğümlerin önem derecelerini (merkezilik) hesaplar.
     /// </summary>
-    public class CentralityAlgorithm
+    public class CentralityAlgorithm : IGraphAnalysisAlgorithm
     {
+        public string Name => "Degree Centrality";
         /// <summary>
         /// Derece Merkeziliği (Degree Centrality) hesaplar.
         /// (Bir düğümün kaç bağlantısı olduğu).

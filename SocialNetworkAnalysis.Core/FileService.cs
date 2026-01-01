@@ -81,5 +81,47 @@ namespace SocialNetworkAnalysis.Core
                 }
             }
         }
+
+        /// <summary>
+        /// Komşuluk matrisini CSV formatında kaydeder.
+        /// </summary>
+        public void SaveAdjacencyMatrixToCsv(Graph graph, string filePath)
+        {
+            var matrix = graph.GetAdjacencyMatrix();
+            var nodeIds = graph.Nodes.Keys.OrderBy(id => id).ToList();
+
+            using (var writer = new StreamWriter(filePath))
+            {
+                // Başlık satırı
+                writer.Write(",");
+                writer.WriteLine(string.Join(",", nodeIds));
+
+                // Her satır
+                foreach (var rowId in nodeIds)
+                {
+                    writer.Write($"{rowId},");
+                    var row = string.Join(",", nodeIds.Select(colId => matrix[rowId][colId].ToString("F4")));
+                    writer.WriteLine(row);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Komşuluk listesini CSV formatında kaydeder.
+        /// </summary>
+        public void SaveAdjacencyListToCsv(Graph graph, string filePath)
+        {
+            var adjacencyList = graph.GetAdjacencyList();
+
+            using (var writer = new StreamWriter(filePath))
+            {
+                writer.WriteLine("NodeId,Neighbors");
+                foreach (var kvp in adjacencyList.OrderBy(x => x.Key))
+                {
+                    string neighbors = string.Join(";", kvp.Value);
+                    writer.WriteLine($"{kvp.Key},{neighbors}");
+                }
+            }
+        }
     }
 }
