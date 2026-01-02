@@ -230,6 +230,8 @@ Id,Name,Activity,Interaction,ConnectionCount,Neighbors
 
 BFS, bir grafı **katman katman** gezer. Başlangıç düğümünden başlayarak önce tüm komşuları, sonra komşuların komşularını ziyaret eder. **Queue (kuyruk)** veri yapısı kullanır ve ağırlıksız graflarda en kısa yolu garanti eder.
 
+![BFS Sonucu](SS/BFS.png)
+
 | Özellik | Değer |
 |---------|-------|
 | Veri Yapısı | Queue (FIFO) |
@@ -241,6 +243,8 @@ BFS, bir grafı **katman katman** gezer. Başlangıç düğümünden başlayarak
 ### 🟢 DFS (Depth-First Search) - Derinlik Öncelikli Arama
 
 DFS, bir grafı **derinlemesine** gezer. Bir yolda mümkün olduğunca ilerler, çıkmaza girdiğinde geri dönerek diğer dalları keşfeder. **Stack (yığın)** veri yapısı kullanır ve döngü tespiti, topolojik sıralama gibi işlemler için idealdir.
+
+![DFS Sonucu](SS/DFS.png)
 
 | Özellik | Değer |
 |---------|-------|
@@ -254,6 +258,8 @@ DFS, bir grafı **derinlemesine** gezer. Bir yolda mümkün olduğunca ilerler, 
 
 Dijkstra, ağırlıklı graflarda **en kısa yolu** bulan açgözlü bir algoritmadır. Her adımda henüz işlenmemiş düğümler arasından en kısa mesafeye sahip olanı seçer ve komşularının mesafelerini günceller. Negatif ağırlıklı kenarları desteklemez.
 
+![Dijkstra Sonucu](SS/Dijkstra.png)
+
 | Özellik | Değer |
 |---------|-------|
 | Kullanım | Ağırlıklı graflarda en kısa yol |
@@ -265,6 +271,8 @@ Dijkstra, ağırlıklı graflarda **en kısa yolu** bulan açgözlü bir algorit
 ### ⭐ A* (A Star) Algoritması
 
 A*, Dijkstra'nın **sezgisel fonksiyon (heuristic)** ile geliştirilmiş halidir. Hedefe olan tahmini mesafeyi de hesaba katarak daha az düğüm ziyaret eder. Formül: `f(n) = g(n) + h(n)` şeklindedir; g(n) gerçek maliyet, h(n) tahmini maliyettir.
+
+![A* Sonucu](SS/A'.png)
 
 | Özellik | Değer |
 |---------|-------|
@@ -278,6 +286,8 @@ A*, Dijkstra'nın **sezgisel fonksiyon (heuristic)** ile geliştirilmiş halidir
 
 Derece Merkeziliği, bir düğümün **kaç komşuya sahip olduğunu** ölçer. Daha fazla bağlantıya sahip düğümler ağın "merkezinde" kabul edilir. Sosyal ağlarda popülerliği gösterir.
 
+![Merkezilik Sonucu](SS/Merkez.png)
+
 | Özellik | Değer |
 |---------|-------|
 | Hesaplama | Komşu sayısı |
@@ -290,6 +300,8 @@ Derece Merkeziliği, bir düğümün **kaç komşuya sahip olduğunu** ölçer. 
 
 Bir grafta birbirine bağlı olmayan **alt grafları** tespit eder. DFS kullanarak her bileşeni ayrı ayrı bulur. Sosyal ağlarda izole grupları, ağ analizinde kopuk bölgeleri gösterir.
 
+![Bağlı Bileşenler](SS/Bileşen.png)
+
 | Özellik | Değer |
 |---------|-------|
 | Kullanım | Alt graf tespiti |
@@ -301,6 +313,8 @@ Bir grafta birbirine bağlı olmayan **alt grafları** tespit eder. DFS kullanar
 ### 🎨 Welsh-Powell Renklendirme
 
 Graf renklendirme, **komşu düğümlerin farklı renklerde** olmasını sağlar. Welsh-Powell, düğümleri derecelerine göre sıralayarak minimum renge yakın sonuç üretir. Çizelgeleme ve kaynak atama problemlerinde kullanılır.
+
+![Renklendirme Sonucu](SS/Renk.png)
 
 | Özellik | Değer |
 |---------|-------|
@@ -489,12 +503,21 @@ $$Weight_{i,j} = \frac{1}{1 + \sqrt{(A_i - A_j)^2 + (I_i - I_j)^2 + (C_i - C_j)^
 
 ## 📚 Kaynaklar
 
-- [.NET Documentation](https://docs.microsoft.com/dotnet/)
-- [WPF Documentation](https://docs.microsoft.com/wpf/)
-- [Graph Algorithms - Wikipedia](https://en.wikipedia.org/wiki/Graph_algorithm)
-- [Dijkstra's Algorithm](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)
-- [A* Search Algorithm](https://en.wikipedia.org/wiki/A*_search_algorithm)
-- [Welsh-Powell Algorithm](https://en.wikipedia.org/wiki/Graph_coloring)
+### Algoritmalar
+- [Introduction to Algorithms (CLRS) - MIT Press](https://mitpress.mit.edu/books/introduction-algorithms-fourth-edition)
+- [Dijkstra's Algorithm - GeeksforGeeks](https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/)
+- [A* Search Algorithm - Red Blob Games](https://www.redblobgames.com/pathfinding/a-star/introduction.html)
+- [BFS and DFS Traversal - Programiz](https://www.programiz.com/dsa/graph-bfs)
+- [Graph Coloring - Brilliant.org](https://brilliant.org/wiki/graph-coloring-and-chromatic-numbers/)
+
+### Sosyal Ağ Analizi
+- [Social Network Analysis - Stanford University](https://snap.stanford.edu/)
+- [Network Analysis with Python - NetworkX Documentation](https://networkx.org/documentation/stable/)
+
+### Teknoloji
+- [.NET Documentation - Microsoft](https://docs.microsoft.com/dotnet/)
+- [WPF Documentation - Microsoft](https://docs.microsoft.com/dotnet/desktop/wpf/)
+- [C# Programming Guide - Microsoft](https://docs.microsoft.com/dotnet/csharp/programming-guide/)
 
 ---
 
