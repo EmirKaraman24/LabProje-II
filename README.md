@@ -247,6 +247,16 @@ flowchart TD
 
 A*, Dijkstra'nın **sezgisel fonksiyon (heuristic)** ile geliştirilmiş halidir. Hedefe olan tahmini mesafeyi de hesaba katarak daha az düğüm ziyaret eder. Formül: `f(n) = g(n) + h(n)` şeklindedir; g(n) gerçek maliyet, h(n) tahmini maliyettir.
 
+```mermaid
+flowchart TD
+    A[Başla] --> B["f = g + h hesapla"]
+    B --> C{Hedef mi?}
+    C -->|Evet| D[Yol bulundu]
+    C -->|Hayır| E[En düşük f seç]
+    E --> F[Komşuları değerlendir]
+    F --> B
+```
+
 ![A* Sonucu](SS/A'.png)
 
 | Özellik | Değer |
@@ -260,6 +270,14 @@ A*, Dijkstra'nın **sezgisel fonksiyon (heuristic)** ile geliştirilmiş halidir
 ### 🎯 Merkezilik (Degree Centrality)
 
 Derece Merkeziliği, bir düğümün **kaç komşuya sahip olduğunu** ölçer. Daha fazla bağlantıya sahip düğümler ağın "merkezinde" kabul edilir. Sosyal ağlarda popülerliği gösterir.
+
+```mermaid
+flowchart LR
+    A[Tüm düğümler] --> B[Komşu say]
+    B --> C[Sırala]
+    C --> D[Top N seç]
+    D --> E[Merkezi düğümler]
+```
 
 ![Merkezilik Sonucu](SS/Merkez.png)
 
@@ -275,6 +293,16 @@ Derece Merkeziliği, bir düğümün **kaç komşuya sahip olduğunu** ölçer. 
 
 Bir grafta birbirine bağlı olmayan **alt grafları** tespit eder. DFS kullanarak her bileşeni ayrı ayrı bulur. Sosyal ağlarda izole grupları, ağ analizinde kopuk bölgeleri gösterir.
 
+```mermaid
+flowchart TD
+    A[Ziyaret edilmemiş düğüm] --> B[DFS başlat]
+    B --> C[Ulaşılan düğümler]
+    C --> D[Bileşen oluştur]
+    D --> E{Kalan düğüm?}
+    E -->|Evet| A
+    E -->|Hayır| F[Tüm bileşenler bulundu]
+```
+
 ![Bağlı Bileşenler](SS/Bileşen.png)
 
 | Özellik | Değer |
@@ -288,6 +316,16 @@ Bir grafta birbirine bağlı olmayan **alt grafları** tespit eder. DFS kullanar
 ### 🎨 Welsh-Powell Renklendirme
 
 Graf renklendirme, **komşu düğümlerin farklı renklerde** olmasını sağlar. Welsh-Powell, düğümleri derecelerine göre sıralayarak minimum renge yakın sonuç üretir. Çizelgeleme ve kaynak atama problemlerinde kullanılır.
+
+```mermaid
+flowchart LR
+    A[Düğümleri sırala] --> B[En yüksek derece]
+    B --> C[Uygun renk bul]
+    C --> D[Renk ata]
+    D --> E{Kalan düğüm?}
+    E -->|Evet| B
+    E -->|Hayır| F[Renklendirme tamam]
+```
 
 ![Renklendirme Sonucu](SS/Renk.png)
 
@@ -409,6 +447,13 @@ classDiagram
 ## 🧮 Dinamik Ağırlık Hesaplama
 
 Kenar ağırlıkları düğüm özelliklerine göre otomatik hesaplanır:
+
+```mermaid
+flowchart LR
+    A["Düğüm A"] --> C["Ağırlık = 1/(1+√∑(fark²))"]
+    B["Düğüm B"] --> C
+    C --> D["Kenar Ağırlığı"]
+```
 
 $$Weight_{i,j} = \frac{1}{1 + \sqrt{(A_i - A_j)^2 + (I_i - I_j)^2 + (C_i - C_j)^2}}$$
 
