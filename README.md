@@ -13,8 +13,8 @@
 [🚀 Kurulum](#-kurulum) •
 [📖 Kullanım](#-kullanım) •
 [🔬 Algoritmalar](#-algoritmalar) •
-[� Ekran Görüntüleri](#-ekran-görüntüleri) •
-[�📊 Test Sonuçları](#-test-sonuçları)
+[📷 Ekran Görüntüleri](#-ekran-görüntüleri) •
+[📊 Test Sonuçları](#-test-sonuçları)
 
 ---
 
@@ -94,6 +94,112 @@ Bu proje, sosyal ağ verilerini analiz etmek, görselleştirmek ve çeşitli gra
 
 ---
 
+### Sınıf Diyagramı
+
+```mermaid
+classDiagram
+    direction TB
+    
+    class Node {
+        +string Id
+        +string Name
+        +double Activity
+        +double Interaction
+        +double ConnectionCount
+        +List~string~ Neighbors
+    }
+    
+    class Edge {
+        +string SourceId
+        +string TargetId
+        +double Weight
+    }
+    
+    class Graph {
+        +Dictionary Nodes
+        +List Edges
+        +AddNode()
+        +AddEdge()
+        +RemoveNode()
+        +RemoveEdge()
+        +UpdateNode()
+        +GetAdjacencyMatrix()
+        +GetAdjacencyList()
+    }
+    
+    class IAlgorithm {
+        <<interface>>
+        +string Name
+    }
+    
+    class IGraphTraversalAlgorithm {
+        <<interface>>
+        +Traverse()
+    }
+    
+    class IShortestPathAlgorithm {
+        <<interface>>
+        +FindPath()
+    }
+    
+    class IColoringAlgorithm {
+        <<interface>>
+        +ColorGraph()
+        +GetColorGroups()
+    }
+    
+    Node --o Graph
+    Edge --o Graph
+    IAlgorithm <|-- IGraphTraversalAlgorithm
+    IAlgorithm <|-- IShortestPathAlgorithm
+    IAlgorithm <|-- IColoringAlgorithm
+```
+
+### Proje Yapısı
+
+```
+📦 SocialNetworkAnalysis
+├── 📂 SocialNetworkAnalysis.Core/      # İş mantığı katmanı
+│   ├── 📄 Node.cs                      # Düğüm modeli
+│   ├── 📄 Edge.cs                      # Kenar modeli
+│   ├── 📄 Graph.cs                     # Graf veri yapısı
+│   ├── 📄 IAlgorithm.cs                # Algoritma arayüzleri
+│   ├── 📄 BfsAlgorithm.cs              # BFS implementasyonu
+│   ├── 📄 DfsAlgorithm.cs              # DFS implementasyonu
+│   ├── 📄 ShortestPathAlgorithm.cs     # Dijkstra algoritması
+│   ├── 📄 AStarAlgorithm.cs            # A* algoritması
+│   ├── 📄 CentralityAlgorithm.cs       # Merkezilik analizi
+│   ├── 📄 ConnectedComponentsAlgorithm.cs  # Bağlı bileşenler
+│   ├── 📄 WelshPowellColoringAlgorithm.cs  # Graf renklendirme
+│   ├── 📄 WeightCalculator.cs          # Dinamik ağırlık hesaplama
+│   ├── 📄 FileService.cs               # CSV dosya işlemleri
+│   └── 📄 JsonFileService.cs           # JSON dosya işlemleri
+│
+├── 📂 SocialNetworkAnalysis.UI/        # Kullanıcı arayüzü katmanı
+│   ├── 📄 MainWindow.xaml              # Ana pencere tasarımı
+│   ├── 📄 MainWindow.xaml.cs           # Ana pencere mantığı
+│   ├── 📄 NodeDialog.xaml              # Düğüm ekleme/güncelleme dialogu
+│   ├── 📄 EdgeDialog.xaml              # Kenar ekleme/silme dialogu
+│   └── 📄 App.xaml                     # Uygulama ayarları
+│
+├── 📂 SS/                              # Ekran görüntüleri
+│   ├── 🖼️ Arayüz.png
+│   ├── 🖼️ BFS.png
+│   ├── 🖼️ DFS.png
+│   ├── 🖼️ Dijkstra.png
+│   ├── 🖼️ A'.png
+│   ├── 🖼️ Merkez.png
+│   ├── 🖼️ Bileşen.png
+│   └── 🖼️ Renk.png
+│
+├── 📄 test_small.csv                   # 20 düğümlük test verisi
+├── 📄 test_medium.csv                  # 100 düğümlük test verisi
+├── 📄 TEST_SONUCLARI.md                # Detaylı test sonuçları
+└── 📄 README.md                        # Bu dosya
+```
+
+---
+
 ## 🖥️ Ana Arayüz
 
 Uygulama modern ve kullanıcı dostu bir arayüze sahiptir. Sol tarafta graf görselleştirmesi, sağ tarafta kontrol panelleri bulunur.
@@ -102,7 +208,7 @@ Uygulama modern ve kullanıcı dostu bir arayüze sahiptir. Sol tarafta graf gö
 
 ---
 
-## �🚀 Kurulum
+## 🚀 Kurulum
 
 ### Gereksinimler
 
@@ -337,113 +443,6 @@ flowchart LR
 
 ---
 
-
-### Sınıf Diyagramı
-
-```mermaid
-classDiagram
-    direction TB
-    
-    class Node {
-        +string Id
-        +string Name
-        +double Activity
-        +double Interaction
-        +double ConnectionCount
-        +List~string~ Neighbors
-    }
-    
-    class Edge {
-        +string SourceId
-        +string TargetId
-        +double Weight
-    }
-    
-    class Graph {
-        +Dictionary Nodes
-        +List Edges
-        +AddNode()
-        +AddEdge()
-        +RemoveNode()
-        +RemoveEdge()
-        +UpdateNode()
-        +GetAdjacencyMatrix()
-        +GetAdjacencyList()
-    }
-    
-    class IAlgorithm {
-        <<interface>>
-        +string Name
-    }
-    
-    class IGraphTraversalAlgorithm {
-        <<interface>>
-        +Traverse()
-    }
-    
-    class IShortestPathAlgorithm {
-        <<interface>>
-        +FindPath()
-    }
-    
-    class IColoringAlgorithm {
-        <<interface>>
-        +ColorGraph()
-        +GetColorGroups()
-    }
-    
-    Node --o Graph
-    Edge --o Graph
-    IAlgorithm <|-- IGraphTraversalAlgorithm
-    IAlgorithm <|-- IShortestPathAlgorithm
-    IAlgorithm <|-- IColoringAlgorithm
-```
-
-### Proje Yapısı
-
-```
-📦 SocialNetworkAnalysis
-├── 📂 SocialNetworkAnalysis.Core/      # İş mantığı katmanı
-│   ├── 📄 Node.cs                      # Düğüm modeli
-│   ├── 📄 Edge.cs                      # Kenar modeli
-│   ├── 📄 Graph.cs                     # Graf veri yapısı
-│   ├── 📄 IAlgorithm.cs                # Algoritma arayüzleri
-│   ├── 📄 BfsAlgorithm.cs              # BFS implementasyonu
-│   ├── 📄 DfsAlgorithm.cs              # DFS implementasyonu
-│   ├── 📄 ShortestPathAlgorithm.cs     # Dijkstra algoritması
-│   ├── 📄 AStarAlgorithm.cs            # A* algoritması
-│   ├── 📄 CentralityAlgorithm.cs       # Merkezilik analizi
-│   ├── 📄 ConnectedComponentsAlgorithm.cs  # Bağlı bileşenler
-│   ├── 📄 WelshPowellColoringAlgorithm.cs  # Graf renklendirme
-│   ├── 📄 WeightCalculator.cs          # Dinamik ağırlık hesaplama
-│   ├── 📄 FileService.cs               # CSV dosya işlemleri
-│   └── 📄 JsonFileService.cs           # JSON dosya işlemleri
-│
-├── 📂 SocialNetworkAnalysis.UI/        # Kullanıcı arayüzü katmanı
-│   ├── 📄 MainWindow.xaml              # Ana pencere tasarımı
-│   ├── 📄 MainWindow.xaml.cs           # Ana pencere mantığı
-│   ├── 📄 NodeDialog.xaml              # Düğüm ekleme/güncelleme dialogu
-│   ├── 📄 EdgeDialog.xaml              # Kenar ekleme/silme dialogu
-│   └── 📄 App.xaml                     # Uygulama ayarları
-│
-├── 📂 SS/                              # Ekran görüntüleri
-│   ├── 🖼️ Arayüz.png
-│   ├── 🖼️ BFS.png
-│   ├── 🖼️ DFS.png
-│   ├── 🖼️ Dijkstra.png
-│   ├── 🖼️ A'.png
-│   ├── 🖼️ Merkez.png
-│   ├── 🖼️ Bileşen.png
-│   └── 🖼️ Renk.png
-│
-├── 📄 test_small.csv                   # 20 düğümlük test verisi
-├── 📄 test_medium.csv                  # 100 düğümlük test verisi
-├── � TEST_SONUCLARI.md                # Detaylı test sonuçları
-└── 📄 README.md                        # Bu dosya
-```
-
----
-
 ## 🧮 Dinamik Ağırlık Hesaplama
 
 Kenar ağırlıkları düğüm özelliklerine göre otomatik hesaplanır:
@@ -538,4 +537,3 @@ $$Weight_{i,j} = \frac{1}{1 + \sqrt{(A_i - A_j)^2 + (I_i - I_j)^2 + (C_i - C_j)^
 - [.NET Documentation - Microsoft](https://docs.microsoft.com/dotnet/)
 - [WPF Documentation - Microsoft](https://docs.microsoft.com/dotnet/desktop/wpf/)
 - [C# Programming Guide - Microsoft](https://docs.microsoft.com/dotnet/csharp/programming-guide/)
-
