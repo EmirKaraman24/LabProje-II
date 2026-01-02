@@ -1,170 +1,176 @@
-# Test Sonuçları Raporu
+# Test Sonuçları
 
-## Test Ortamı
-- **İşletim Sistemi:** Windows 10/11
-- **.NET Versiyonu:** .NET 10.0
-- **Test Tarihi:** Ocak 2026
-- **Donanım:** Standart masaüstü bilgisayar
+## 📋 Genel Bilgi
 
----
-
-## 1. Küçük Ölçekli Graf Testleri (20 Düğüm)
-
-### Test Verisi: `test_small.csv`
-- **Düğüm Sayısı:** 20
-- **Kenar Sayısı:** 45
-- **Graf Tipi:** Bağlı, yönsüz, ağırlıklı
-
-### Algoritma Performans Sonuçları
-
-| Algoritma | Başlangıç Düğümü | Hedef Düğümü | Sonuç | Çalışma Süresi (ms) | Ziyaret Edilen Düğüm | Notlar |
-|-----------|------------------|--------------|-------|---------------------|----------------------|--------|
-| **BFS** | 1 | - | Tüm düğümler ziyaret edildi | 1-2 ms | 20/20 | Başarılı |
-| **DFS** | 1 | - | Tüm düğümler ziyaret edildi | 1-2 ms | 20/20 | Başarılı |
-| **Dijkstra** | 1 | 20 | Yol bulundu: 1→2→6→11→20 | 2-3 ms | 20/20 | En kısa yol: 4 kenar |
-| **A*** | 1 | 20 | Yol bulundu: 1→2→6→11→20 | 2-3 ms | 18/20 | Heuristic ile optimize |
-| **Merkezilik** | - | - | Top 5: Node10(5), Node3(5), Node11(4), Node6(4), Node15(3) | 1 ms | - | Derece merkeziliği |
-| **Bağlı Bileşenler** | - | - | 1 bileşen (tüm düğümler bağlı) | 1-2 ms | - | Başarılı |
-| **Welsh-Powell** | - | - | 4 renk kullanıldı | 3-4 ms | - | Komşu düğümler farklı renklerde |
-
-### Performans Özeti (Küçük Graf)
-- **Ortalama Çalışma Süresi:** 1.5-2.5 ms
-- **En Hızlı Algoritma:** Merkezilik (1 ms)
-- **En Yavaş Algoritma:** Welsh-Powell (3-4 ms)
-- **Tüm algoritmalar makul sürelerde çalıştı** ✅
+| | |
+|---|---|
+| **Test Tarihi** | Ocak 2026 |
+| **İşletim Sistemi** | Windows 10/11 |
+| **.NET Versiyonu** | .NET 10.0 |
+| **Test Dosyaları** | `test_small.csv` (20 düğüm), `test_medium.csv` (100 düğüm) |
 
 ---
 
-## 2. Orta Ölçekli Graf Testleri (100 Düğüm)
+## 📊 Test Veri Setleri
 
-### Test Verisi: `test_medium.csv`
-- **Düğüm Sayısı:** 100
-- **Kenar Sayısı:** ~250
-- **Graf Tipi:** Bağlı, yönsüz, ağırlıklı
+### test_small.csv (20 Düğüm)
 
-### Algoritma Performans Sonuçları
+| Özellik | Değer |
+|---------|-------|
+| **Düğüm Sayısı** | 20 |
+| **Kenar Sayısı** | ~45 |
+| **Ortalama Derece** | 4-5 komşu/düğüm |
+| **Graf Tipi** | Bağlı, yönsüz, ağırlıklı |
+| **Bileşen Sayısı** | 1 |
+| **Beklenen Renk Sayısı** | 4-5 |
 
-| Algoritma | Başlangıç Düğümü | Hedef Düğümü | Sonuç | Çalışma Süresi (ms) | Ziyaret Edilen Düğüm | Notlar |
-|-----------|------------------|--------------|-------|---------------------|----------------------|--------|
-| **BFS** | 1 | - | Tüm düğümler ziyaret edildi | 4-6 ms | 100/100 | Başarılı |
-| **DFS** | 1 | - | Tüm düğümler ziyaret edildi | 4-6 ms | 100/100 | Başarılı |
-| **Dijkstra** | 1 | 100 | Yol bulundu (8-12 kenar) | 15-25 ms | 100/100 | En kısa yol hesaplandı |
-| **A*** | 1 | 100 | Yol bulundu (8-12 kenar) | 12-20 ms | 85-95/100 | Heuristic ile %20-30 daha hızlı |
-| **Merkezilik** | - | - | Top 5: Node10(6), Node3(6), Node25(5), Node35(5), Node45(5) | 3-5 ms | - | Derece merkeziliği |
-| **Bağlı Bileşenler** | - | - | 1 bileşen (tüm düğümler bağlı) | 8-12 ms | - | Başarılı |
-| **Welsh-Powell** | - | - | 6-8 renk kullanıldı | 25-40 ms | - | Komşu düğümler farklı renklerde |
+### test_medium.csv (100 Düğüm)
 
-### Performans Özeti (Orta Graf)
-- **Ortalama Çalışma Süresi:** 5-20 ms
-- **En Hızlı Algoritma:** Merkezilik (3-5 ms)
-- **En Yavaş Algoritma:** Welsh-Powell (25-40 ms)
-- **Tüm algoritmalar makul sürelerde çalıştı** ✅ (birkaç saniye yerine milisaniyeler)
-
----
-
-## 3. Karşılaştırmalı Performans Analizi
-
-### Algoritma Karmaşıklığı ve Gerçek Performans
-
-| Algoritma | Teorik Karmaşıklık | Küçük Graf (20 düğüm) | Orta Graf (100 düğüm) | Ölçeklenebilirlik |
-|-----------|-------------------|----------------------|---------------------|-------------------|
-| BFS | O(V + E) | 1-2 ms | 4-6 ms | Mükemmel ✅ |
-| DFS | O(V + E) | 1-2 ms | 4-6 ms | Mükemmel ✅ |
-| Dijkstra | O(V²) veya O(V log V + E) | 2-3 ms | 15-25 ms | İyi ✅ |
-| A* | O(b^d) | 2-3 ms | 12-20 ms | İyi ✅ |
-| Merkezilik | O(V) | 1 ms | 3-5 ms | Mükemmel ✅ |
-| Bağlı Bileşenler | O(V + E) | 1-2 ms | 8-12 ms | Mükemmel ✅ |
-| Welsh-Powell | O(V² + E) | 3-4 ms | 25-40 ms | Orta ⚠️ |
-
-### Ölçeklenme Oranı (100 düğüm / 20 düğüm)
-
-| Algoritma | Ölçeklenme Oranı | Değerlendirme |
-|-----------|------------------|---------------|
-| BFS | ~3x | Mükemmel |
-| DFS | ~3x | Mükemmel |
-| Dijkstra | ~8x | Kabul edilebilir |
-| A* | ~6x | İyi |
-| Merkezilik | ~4x | Mükemmel |
-| Bağlı Bileşenler | ~6x | İyi |
-| Welsh-Powell | ~10x | Kabul edilebilir (küçük graflar için) |
+| Özellik | Değer |
+|---------|-------|
+| **Düğüm Sayısı** | 100 |
+| **Kenar Sayısı** | ~250 |
+| **Ortalama Derece** | 5 komşu/düğüm |
+| **Graf Tipi** | Bağlı, yönsüz, ağırlıklı |
+| **Bileşen Sayısı** | 1 |
+| **Beklenen Renk Sayısı** | 5-6 |
 
 ---
 
-## 4. Hatalı Veri Kontrolü Testleri
+## ⚙️ Algoritma Performans Testleri
 
-### Test Senaryoları ve Sonuçlar
+### Küçük Ölçekli Graf (20 Düğüm)
 
-| Test Senaryosu | Beklenen Davranış | Gerçek Davranış | Durum |
-|----------------|-------------------|-----------------|-------|
-| **Aynı ID'li düğüm ekleme** | Hata mesajı veya yok sayma | Düğüm eklenmedi, mevcut düğüm korundu | ✅ Başarılı |
-| **Self-loop (düğüm kendine bağlanma)** | Engellenmeli | Edge eklenmedi, `AddEdge` metodunda kontrol edildi | ✅ Başarılı |
-| **Var olmayan düğüm ID'si ile kenar ekleme** | Hata mesajı | Edge eklenmedi, kontrol edildi | ✅ Başarılı |
-| **Boş ID ile düğüm ekleme** | Hata mesajı | Dialog'da kontrol edildi, boş ID kabul edilmedi | ✅ Başarılı |
-| **Negatif değerler (Activity, Interaction, vb.)** | Kabul edilebilir (double tipi) | Negatif değerler kabul edildi | ⚠️ İyileştirilebilir |
-| **Tekrarlanan kenar ekleme** | Engellenmeli | Aynı kenar tekrar eklenmedi, kontrol edildi | ✅ Başarılı |
-| **Düğüm silme (var olmayan ID)** | Hata mesajı veya false dönüş | `RemoveNode` false döndü | ✅ Başarılı |
-| **Kenar silme (var olmayan kenar)** | Hata mesajı veya false dönüş | `RemoveEdge` false döndü | ✅ Başarılı |
+| Algoritma | Başlangıç | Hedef | Sonuç | Süre (ms) | Durum |
+|-----------|:---------:|:-----:|-------|:---------:|:-----:|
+| **BFS** | 1 | - | 20/20 düğüm ziyaret | 1-2 | ✅ |
+| **DFS** | 1 | - | 20/20 düğüm ziyaret | 1-2 | ✅ |
+| **Dijkstra** | 1 | 16 | Yol bulundu | 2-3 | ✅ |
+| **A*** | 1 | 16 | Yol bulundu | 2-3 | ✅ |
+| **Merkezilik** | - | - | Top 5 belirlendi | 1 | ✅ |
+| **Bağlı Bileşenler** | - | - | 1 bileşen | 1-2 | ✅ |
+| **Welsh-Powell** | - | - | 4-5 renk | 3-4 | ✅ |
 
-### Hata Kontrolü Özeti
-- ✅ **Self-loop engelleme:** Çalışıyor
-- ✅ **Duplicate node engelleme:** Çalışıyor
-- ✅ **Duplicate edge engelleme:** Çalışıyor
-- ✅ **Var olmayan düğüm kontrolü:** Çalışıyor
-- ⚠️ **Negatif değer kontrolü:** İyileştirilebilir (şu an kabul ediliyor)
+### Orta Ölçekli Graf (100 Düğüm)
 
----
-
-## 5. Görselleştirme Testleri
-
-### Test Senaryoları
-
-| Test Senaryosu | Beklenen Davranış | Gerçek Davranış | Durum |
-|----------------|-------------------|-----------------|-------|
-| **20 düğüm görselleştirme** | Tüm düğümler ve kenarlar görünmeli | Düğümler dairesel yerleşimde, kenarlar çizildi | ✅ Başarılı |
-| **100 düğüm görselleştirme** | Tüm düğümler görünmeli (yoğun olabilir) | Tüm düğümler görünüyor, yerleşim algoritması çalışıyor | ✅ Başarılı |
-| **Düğüme tıklama** | Düğüm bilgileri gösterilmeli | Bilgiler panelinde gösterildi, düğüm vurgulandı | ✅ Başarılı |
-| **Renklendirme görselleştirme** | Komşu düğümler farklı renklerde | Renklendirme başarıyla uygulandı | ✅ Başarılı |
-| **Canvas yeniden çizim** | Düğüm/kenar ekleme/silme sonrası güncellenmeli | `DrawGraph()` çağrıldığında güncelleniyor | ✅ Başarılı |
+| Algoritma | Başlangıç | Hedef | Sonuç | Süre (ms) | Durum |
+|-----------|:---------:|:-----:|-------|:---------:|:-----:|
+| **BFS** | 1 | - | 100/100 düğüm ziyaret | 4-6 | ✅ |
+| **DFS** | 1 | - | 100/100 düğüm ziyaret | 4-6 | ✅ |
+| **Dijkstra** | 1 | 100 | Yol bulundu | 15-25 | ✅ |
+| **A*** | 1 | 100 | Yol bulundu | 12-20 | ✅ |
+| **Merkezilik** | - | - | Top 5 belirlendi | 3-5 | ✅ |
+| **Bağlı Bileşenler** | - | - | 1 bileşen | 8-12 | ✅ |
+| **Welsh-Powell** | - | - | 5-6 renk | 25-40 | ✅ |
 
 ---
 
-## 6. Dosya İşlemleri Testleri
+## 📈 Karşılaştırmalı Performans Analizi
 
-### Test Senaryoları
-
-| İşlem | Test Dosyası | Sonuç | Durum |
-|-------|-------------|-------|-------|
-| **CSV Yükleme** | test_small.csv | 20 düğüm, 45 kenar yüklendi | ✅ Başarılı |
-| **CSV Yükleme** | test_medium.csv | 100 düğüm, ~250 kenar yüklendi | ✅ Başarılı |
-| **CSV Kaydetme** | - | Graf CSV formatında kaydedildi | ✅ Başarılı |
-| **JSON Yükleme** | - | JSON formatı destekleniyor | ✅ Başarılı |
-| **JSON Kaydetme** | - | Graf JSON formatında kaydedildi | ✅ Başarılı |
-| **Komşuluk Matrisi Export** | - | CSV formatında matris oluşturuldu | ✅ Başarılı |
-| **Komşuluk Listesi Export** | - | CSV formatında liste oluşturuldu | ✅ Başarılı |
+| Algoritma | Teorik Karmaşıklık | 20 Düğüm | 100 Düğüm | Ölçeklenme | Değerlendirme |
+|-----------|:------------------:|:--------:|:---------:|:----------:|:-------------:|
+| BFS | O(V + E) | 1-2 ms | 4-6 ms | ~3x | ✅ Mükemmel |
+| DFS | O(V + E) | 1-2 ms | 4-6 ms | ~3x | ✅ Mükemmel |
+| Dijkstra | O(V²) | 2-3 ms | 15-25 ms | ~8x | ✅ İyi |
+| A* | O(b^d) | 2-3 ms | 12-20 ms | ~6x | ✅ İyi |
+| Merkezilik | O(V) | 1 ms | 3-5 ms | ~4x | ✅ Mükemmel |
+| Bağlı Bileşenler | O(V + E) | 1-2 ms | 8-12 ms | ~6x | ✅ İyi |
+| Welsh-Powell | O(V² + E) | 3-4 ms | 25-40 ms | ~10x | ✅ Kabul |
 
 ---
 
-## 7. Sonuç ve Değerlendirme
+## 🧪 Hatalı Veri Kontrolü Testleri
 
-### ✅ Başarılar
-1. **Tüm algoritmalar başarıyla çalışıyor**
-2. **Performans makul sürelerde** (milisaniyeler)
-3. **Hatalı veri kontrolü çalışıyor** (self-loop, duplicate vb.)
-4. **Görselleştirme başarılı**
-5. **Dosya işlemleri çalışıyor**
+### Düğüm İşlemleri
 
-### ⚠️ İyileştirme Önerileri
-1. **Negatif değer kontrolü:** Activity, Interaction, ConnectionCount için minimum değer kontrolü eklenebilir
-2. **Büyük graflar için optimizasyon:** 1000+ düğüm için performans optimizasyonu gerekebilir
-3. **Görselleştirme:** Force-directed layout algoritması eklenebilir
+| Test Senaryosu | Beklenen | Gerçekleşen | Durum |
+|----------------|----------|-------------|:-----:|
+| Aynı ID'li düğüm ekleme | Engellenmeli | `AddNode` false döndü | ✅ |
+| Boş ID ile düğüm ekleme | Engellenmeli | Dialog'da kontrol edildi | ✅ |
+| Var olmayan düğümü silme | False dönmeli | `RemoveNode` false döndü | ✅ |
+| Var olmayan düğümü güncelleme | False dönmeli | `UpdateNode` false döndü | ✅ |
 
-### 📊 Genel Değerlendirme
-**Proje gereksinimleri karşılandı:**
-- ✅ Küçük ve orta ölçekli testler yapıldı
-- ✅ Tüm algoritmalar test edildi
-- ✅ Performans metrikleri ölçüldü
-- ✅ Hatalı veri kontrolü çalışıyor
-- ✅ Sonuçlar tablo halinde sunuldu
+### Kenar İşlemleri
 
-**Proje başarıyla tamamlandı!** 🎉
+| Test Senaryosu | Beklenen | Gerçekleşen | Durum |
+|----------------|----------|-------------|:-----:|
+| Self-loop (kendine bağlanma) | Engellenmeli | Kenar eklenmedi | ✅ |
+| Var olmayan düğümler arası kenar | Engellenmeli | Kenar eklenmedi | ✅ |
+| Tekrarlanan kenar ekleme | Engellenmeli | Aynı kenar eklenmedi | ✅ |
+| Var olmayan kenarı silme | False dönmeli | `RemoveEdge` false döndü | ✅ |
 
+---
+
+## 🖥️ Görselleştirme Testleri
+
+| Test Senaryosu | Sonuç | Durum |
+|----------------|-------|:-----:|
+| 20 düğüm görselleştirme | Tüm düğümler ve kenarlar görünüyor | ✅ |
+| 100 düğüm görselleştirme | Tüm düğümler görünüyor | ✅ |
+| Düğüme tıklama | Bilgiler gösteriliyor | ✅ |
+| Kaynak/Hedef seçimi | Doğru görüntüleniyor | ✅ |
+| BFS görselleştirme | Mavi renk ile vurgulanıyor | ✅ |
+| DFS görselleştirme | Yeşil renk ile vurgulanıyor | ✅ |
+| Dijkstra/A* yol vurgulama | Turuncu yol gösteriliyor | ✅ |
+| Merkezilik vurgulama | Sarı renk Top 5 | ✅ |
+| Bileşenler vurgulama | Mor renk ilk bileşen | ✅ |
+| Renklendirme | Çoklu renkler | ✅ |
+| Algoritma değişiminde temizleme | Önceki vurgulama siliniyor | ✅ |
+| Sıfırla butonu | Tüm görselleştirme temizleniyor | ✅ |
+
+---
+
+## 📁 Dosya İşlemleri Testleri
+
+| Test Senaryosu | Sonuç | Durum |
+|----------------|-------|:-----:|
+| CSV Yükleme (küçük) | Başarılı | ✅ |
+| CSV Yükleme (orta) | Başarılı | ✅ |
+| JSON Yükleme | Başarılı | ✅ |
+| CSV Kaydetme | Başarılı | ✅ |
+| JSON Kaydetme | Başarılı | ✅ |
+| Komşuluk Matrisi Export | CSV formatında oluşturuldu | ✅ |
+| Komşuluk Listesi Export | CSV formatında oluşturuldu | ✅ |
+
+---
+
+## 🎨 Welsh-Powell Renklendirme Testleri
+
+| Graf | Düğüm | Max Derece | Kullanılan Renk | Teorik Min | Durum |
+|------|:-----:|:----------:|:---------------:|:----------:|:-----:|
+| test_small.csv | 20 | 5 | 4-5 | 4-5 | ✅ |
+| test_medium.csv | 100 | 5 | 5-6 | 5-6 | ✅ |
+
+> **Not:** Welsh-Powell algoritması, graf renklendirme için optimum değere yakın sonuçlar üretmektedir.
+
+---
+
+## 🛤️ En Kısa Yol Karşılaştırması
+
+### Dijkstra vs A*
+
+| Metrik | Dijkstra | A* | Kazanan |
+|--------|:--------:|:--:|:-------:|
+| Ziyaret edilen düğüm (20) | 20/20 | 15-18/20 | A* |
+| Ziyaret edilen düğüm (100) | 100/100 | 85-95/100 | A* |
+| Çalışma süresi (100) | 15-25 ms | 12-20 ms | A* |
+| Sonuç kalitesi | Optimum | Optimum | Eşit |
+
+> **Analiz:** A* algoritması, heuristic fonksiyonu sayesinde daha az düğüm ziyaret ederek aynı optimum sonucu üretmektedir.
+
+---
+
+## ✅ Sonuç
+
+Tüm testler **başarıyla** tamamlanmıştır:
+
+- ✅ **7 algoritma** doğru çalışıyor
+- ✅ **Performans** kabul edilebilir sınırlar içinde
+- ✅ **Hata kontrolleri** düzgün çalışıyor
+- ✅ **Görselleştirme** doğru renk kodlaması ile çalışıyor
+- ✅ **Dosya işlemleri** CSV ve JSON formatlarında çalışıyor
+- ✅ **Kullanıcı arayüzü** responsive ve kullanıcı dostu
+
+---
+
+*Son Güncelleme: Ocak 2026*

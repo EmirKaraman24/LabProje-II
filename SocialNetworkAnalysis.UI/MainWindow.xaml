@@ -367,38 +367,66 @@
                 <!-- Algorithms -->
                 <Expander Style="{StaticResource ModernExpander}" Tag="⚙️ Algoritmalar" IsExpanded="True">
                     <StackPanel>
-                        <!-- Selection Mode -->
-                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                            <RadioButton x:Name="RadioSource" 
-                                         Content="📍 Kaynak" 
-                                         Style="{StaticResource ModernRadioButton}" 
-                                         IsChecked="True"/>
-                            <RadioButton x:Name="RadioTarget" 
-                                         Content="🎯 Hedef" 
-                                         Style="{StaticResource ModernRadioButton}"/>
-                        </StackPanel>
-
+                        <!-- Selection Mode and Reset -->
                         <Grid Margin="0,0,0,8">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="Kaynak:" FontSize="10" Foreground="#5A6C7D" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                            <TextBox x:Name="TxtSourceId" 
-                                     Grid.Column="1"
-                                     IsReadOnly="True" 
-                                     Style="{StaticResource ModernTextBox}" 
-                                     Background="#F0F2F5"
-                                     Margin="0,0,8,0"/>
-                            <TextBlock Text="Hedef:" Grid.Column="2" FontSize="10" Foreground="#5A6C7D" VerticalAlignment="Center" Margin="0,0,5,0"/>
-                            <TextBox x:Name="TxtTargetId" 
-                                     Grid.Column="3"
-                                     IsReadOnly="True" 
-                                     Style="{StaticResource ModernTextBox}" 
-                                     Background="#F0F2F5"/>
+                            <StackPanel Orientation="Horizontal">
+                                <RadioButton x:Name="RadioSource" 
+                                             Content="📍 Kaynak" 
+                                             Style="{StaticResource ModernRadioButton}" 
+                                             IsChecked="True"/>
+                                <RadioButton x:Name="RadioTarget" 
+                                             Content="🎯 Hedef" 
+                                             Style="{StaticResource ModernRadioButton}"/>
+                            </StackPanel>
+                            <Button x:Name="BtnReset" 
+                                    Content="🔄 Sıfırla" 
+                                    Grid.Column="1"
+                                    Style="{StaticResource DangerButton}" 
+                                    Padding="8,4"
+                                    Height="26"
+                                    FontSize="11"
+                                    Click="BtnReset_Click"/>
                         </Grid>
+
+                        <!-- Kaynak/Hedef Display -->
+                        <Border Background="#E8F4FD" CornerRadius="6" Padding="10" Margin="0,0,0,10">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Margin="0,0,5,0">
+                                    <TextBlock Text="📍 KAYNAK" FontSize="10" FontWeight="Bold" Foreground="#2E7D32" Margin="0,0,0,3"/>
+                                    <Border Background="White" CornerRadius="4" BorderBrush="#4CAF50" BorderThickness="2" Padding="8,6">
+                                        <TextBlock x:Name="TxtSourceDisplay" 
+                                                   Text="Seçilmedi" 
+                                                   FontSize="14" 
+                                                   FontWeight="Bold" 
+                                                   Foreground="#2E7D32"
+                                                   HorizontalAlignment="Center"/>
+                                    </Border>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1" Margin="5,0,0,0">
+                                    <TextBlock Text="🎯 HEDEF" FontSize="10" FontWeight="Bold" Foreground="#1565C0" Margin="0,0,0,3"/>
+                                    <Border Background="White" CornerRadius="4" BorderBrush="#2196F3" BorderThickness="2" Padding="8,6">
+                                        <TextBlock x:Name="TxtTargetDisplay" 
+                                                   Text="Seçilmedi" 
+                                                   FontSize="14" 
+                                                   FontWeight="Bold" 
+                                                   Foreground="#1565C0"
+                                                   HorizontalAlignment="Center"/>
+                                    </Border>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                        
+                        <!-- Hidden textboxes for compatibility -->
+                        <TextBox x:Name="TxtSourceId" Visibility="Collapsed"/>
+                        <TextBox x:Name="TxtTargetId" Visibility="Collapsed"/>
 
                         <TextBlock Text="🔍 Gezinti" FontSize="10" FontWeight="SemiBold" Foreground="#7F8C8D" Margin="0,0,0,5"/>
                         <Grid Margin="0,0,0,8">

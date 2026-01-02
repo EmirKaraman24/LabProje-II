@@ -35,6 +35,11 @@ public partial class MainWindow : Window
         Brushes.Lime, Brushes.Teal, Brushes.Navy, Brushes.Maroon, Brushes.Olive
     };
 
+    // Algoritma görselleştirme için vurgulanan düğümler
+    private HashSet<string> _highlightedNodes = new HashSet<string>();
+    private HashSet<string> _pathNodes = new HashSet<string>();
+    private string _currentAlgorithm = "";
+
     public MainWindow()
     {
         InitializeComponent();
@@ -64,7 +69,7 @@ public partial class MainWindow : Window
     }
 
     /// <summary>
-    /// Düğüm pozisyonlarını dairesel yerleşim algoritması ile hesaplar.
+    /// Düğüm pozisyonlarını rastgele (karmaşık) yerleşim ile hesaplar.
     /// </summary>
     private void CalculateNodePositions()
     {
@@ -74,15 +79,22 @@ public partial class MainWindow : Window
         int count = nodes.Count;
         if (count == 0) return;
 
-        double centerX = GraphCanvas.ActualWidth / 2;
-        double centerY = GraphCanvas.ActualHeight / 2;
-        double radius = Math.Min(centerX, centerY) * 0.7;
-
+        double canvasWidth = GraphCanvas.ActualWidth;
+        double canvasHeight = GraphCanvas.ActualHeight;
+        
+        // Kenar boşlukları
+        double marginX = 50;
+        double marginY = 50;
+        
+        // Tutarlı rastgelelik için seed kullan (düğüm sayısına göre)
+        var random = new Random(count * 42);
+        
         for (int i = 0; i < count; i++)
         {
-            double angle = 2 * Math.PI * i / count;
-            double x = centerX + radius * Math.Cos(angle);
-            double y = centerY + radius * Math.Sin(angle);
+            // Rastgele pozisyon
+            double x = marginX + random.NextDouble() * (canvasWidth - 2 * marginX);
+            double y = marginY + random.NextDouble() * (canvasHeight - 2 * marginY);
+            
             _nodePositions[nodes[i].Id] = new Point(x, y);
         }
     }
@@ -169,6 +181,30 @@ public partial class MainWindow : Window
     /// </summary>
     private Brush GetNodeColor(string nodeId)
     {
+        // Algoritma sonucu için yol vurgulama
+        if (_pathNodes.Contains(nodeId))
+        {
+            return new SolidColorBrush(Color.FromRgb(255, 87, 34)); // Turuncu - yol
+        }
+        
+        // Algoritma sonucu için gezinti vurgulama
+        if (_highlightedNodes.Contains(nodeId))
+        {
+            switch (_currentAlgorithm)
+            {
+                case "BFS":
+                    return new SolidColorBrush(Color.FromRgb(33, 150, 243)); // Mavi
+                case "DFS":
+                    return new SolidColorBrush(Color.FromRgb(76, 175, 80)); // Yeşil
+                case "Centrality":
+                    return new SolidColorBrush(Color.FromRgb(255, 193, 7)); // Sarı
+                case "Component":
+                    return new SolidColorBrush(Color.FromRgb(156, 39, 176)); // Mor
+                default:
+                    return new SolidColorBrush(Color.FromRgb(96, 125, 139)); // Gri-mavi
+            }
+        }
+        
         if (_nodeColors.ContainsKey(nodeId))
         {
             int colorIndex = _nodeColors[nodeId] % ColorPalette.Length;
@@ -182,7 +218,92 @@ public partial class MainWindow : Window
     /// </summary>
     private void ApplyColoring(Dictionary<string, int> coloring)
     {
+        // Önce diğer görselleştirmeleri temizle
+        _highlightedNodes.Clear();
+        _pathNodes.Clear();
+        _currentAlgorithm = "";
+        
+        // Sonra yeni renklendirmeyi uygula
         _nodeColors = coloring;
+        DrawGraph();
+    }
+
+    /// <summary>
+    /// Görselleştirmeyi sıfırlar - tüm renklendirme ve vurgulamaları temizler.
+    /// </summary>
+    private void ClearVisualization()
+    {
+        _highlightedNodes.Clear();
+        _pathNodes.Clear();
+        _currentAlgorithm = "";
+        _nodeColors.Clear();
+    }
+
+    /// <summary>
+    /// Görüntüyü ve seçimleri sıfırlar.
+    /// </summary>
+    private void BtnReset_Click(object sender, RoutedEventArgs e)
+    {
+        // Seçimleri sıfırla
+        TxtSourceId.Text = "";
+        TxtTargetId.Text = "";
+        TxtSourceDisplay.Text = "Seçilmedi";
+        TxtTargetDisplay.Text = "Seçilmedi";
+        _selectedNodeId = null;
+        
+        // Görselleştirmeyi sıfırla
+        ClearVisualization();
+        _nodeColors.Clear();
+        
+        // Grafı yeniden çiz
+        DrawGraph();
+        
+        // Bilgi panelini sıfırla
+        TxtInfo.Text = "Görüntü sıfırlandı.\n\nGraf üzerinde bir düğüme tıklayarak seçim yapabilirsiniz.";
+    }
+
+    /// <summary>
+    /// Yolu görsel olarak vurgular.
+    /// </summary>
+    private void HighlightPath(List<Node> path)
+    {
+        ClearVisualization();
+        foreach (var node in path)
+        {
+            _pathNodes.Add(node.Id);
+        }
+        DrawGraph();
+        
+        // Yol kenarlarını vurgula
+        for (int i = 0; i < path.Count - 1; i++)
+        {
+            string edgeKey1 = $"{path[i].Id}-{path[i + 1].Id}";
+            string edgeKey2 = $"{path[i + 1].Id}-{path[i].Id}";
+            
+            if (_edgeShapes.ContainsKey(edgeKey1))
+            {
+                _edgeShapes[edgeKey1].Stroke = new SolidColorBrush(Color.FromRgb(255, 87, 34));
+                _edgeShapes[edgeKey1].StrokeThickness = 4;
+            }
+            else if (_edgeShapes.ContainsKey(edgeKey2))
+            {
+                _edgeShapes[edgeKey2].Stroke = new SolidColorBrush(Color.FromRgb(255, 87, 34));
+                _edgeShapes[edgeKey2].StrokeThickness = 4;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Gezinti sonucunu görsel olarak vurgular.
+    /// </summary>
+    private void HighlightTraversal(List<Node> visited, string algorithm)
+    {
+        ClearVisualization();
+        _currentAlgorithm = algorithm;
+        foreach (var node in visited)
+        {
+            _highlightedNodes.Add(node.Id);
+        }
         DrawGraph();
     }
 
@@ -481,10 +602,12 @@ public partial class MainWindow : Window
                 if (RadioSource.IsChecked == true)
                 {
                     TxtSourceId.Text = kvp.Key;
+                    TxtSourceDisplay.Text = kvp.Key;
                 }
                 else if (RadioTarget.IsChecked == true)
                 {
                     TxtTargetId.Text = kvp.Key;
+                    TxtTargetDisplay.Text = kvp.Key;
                 }
 
                 // Seçili düğümü vurgula
@@ -524,7 +647,10 @@ public partial class MainWindow : Window
         stopwatch.Stop();
 
         var resultStr = string.Join(" -> ", visited.Select(n => n.Id));
-        TxtInfo.Text = $"BFS Sonucu ({startId} başlangıçlı):\n{resultStr}\n\nÇalışma Süresi: {stopwatch.ElapsedMilliseconds} ms";
+        TxtInfo.Text = $"BFS Sonucu ({startId} başlangıçlı):\n{resultStr}\n\nZiyaret Edilen: {visited.Count} düğüm\nÇalışma Süresi: {stopwatch.ElapsedMilliseconds} ms";
+        
+        // Görselleştirme
+        HighlightTraversal(visited, "BFS");
     }
 
     private void BtnDfs_Click(object sender, RoutedEventArgs e)
@@ -551,7 +677,10 @@ public partial class MainWindow : Window
         stopwatch.Stop();
 
         var resultStr = string.Join(" -> ", visited.Select(n => n.Id));
-        TxtInfo.Text = $"DFS Sonucu ({startId} başlangıçlı):\n{resultStr}\n\nÇalışma Süresi: {stopwatch.ElapsedMilliseconds} ms";
+        TxtInfo.Text = $"DFS Sonucu ({startId} başlangıçlı):\n{resultStr}\n\nZiyaret Edilen: {visited.Count} düğüm\nÇalışma Süresi: {stopwatch.ElapsedMilliseconds} ms";
+        
+        // Görselleştirme
+        HighlightTraversal(visited, "DFS");
     }
 
     private void BtnDijkstra_Click(object sender, RoutedEventArgs e)
@@ -595,7 +724,10 @@ public partial class MainWindow : Window
         if (path.Count > 0)
         {
             var pathStr = string.Join(" -> ", path.Select(n => n.Id));
-            TxtInfo.Text = $"{algorithmType} Yolu:\n{pathStr}\n\nÇalışma Süresi: {stopwatch.ElapsedMilliseconds} ms";
+            TxtInfo.Text = $"{algorithmType} Yolu:\n{pathStr}\n\nYol Uzunluğu: {path.Count} düğüm\nÇalışma Süresi: {stopwatch.ElapsedMilliseconds} ms";
+            
+            // Görselleştirme
+            HighlightPath(path);
         }
         else
         {
@@ -624,6 +756,15 @@ public partial class MainWindow : Window
         sb.AppendLine($"\nÇalışma Süresi: {stopwatch.ElapsedMilliseconds} ms");
 
         TxtInfo.Text = sb.ToString();
+        
+        // Top 5 düğümü vurgula
+        ClearVisualization();
+        _currentAlgorithm = "Centrality";
+        foreach (var item in results)
+        {
+            _highlightedNodes.Add(item.Key.Id);
+        }
+        DrawGraph();
     }
 
     private void BtnConnectedComponents_Click(object sender, RoutedEventArgs e)
@@ -646,6 +787,18 @@ public partial class MainWindow : Window
         sb.AppendLine($"\nÇalışma Süresi: {stopwatch.ElapsedMilliseconds} ms");
 
         TxtInfo.Text = sb.ToString();
+        
+        // İlk bileşeni vurgula
+        ClearVisualization();
+        _currentAlgorithm = "Component";
+        if (components.Count > 0)
+        {
+            foreach (var node in components[0])
+            {
+                _highlightedNodes.Add(node.Id);
+            }
+        }
+        DrawGraph();
     }
 
     private void BtnColoring_Click(object sender, RoutedEventArgs e)

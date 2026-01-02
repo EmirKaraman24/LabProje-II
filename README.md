@@ -4,6 +4,7 @@
 
 [![.NET](https://img.shields.io/badge/.NET-10.0-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)](https://dotnet.microsoft.com/)
 [![WPF](https://img.shields.io/badge/WPF-Desktop-0078D4?style=for-the-badge&logo=windows&logoColor=white)](https://docs.microsoft.com/wpf/)
+[![C#](https://img.shields.io/badge/C%23-12.0-239120?style=for-the-badge&logo=csharp&logoColor=white)](https://docs.microsoft.com/dotnet/csharp/)
 [![License](https://img.shields.io/badge/License-Educational-green?style=for-the-badge)](LICENSE)
 
 **Graf algoritmaları ile sosyal ağ analizi yapan modern bir masaüstü uygulaması**
@@ -12,7 +13,8 @@
 [🚀 Kurulum](#-kurulum) •
 [📖 Kullanım](#-kullanım) •
 [🔬 Algoritmalar](#-algoritmalar) •
-[📊 Testler](#-test-sonuçları)
+[� Ekran Görüntüleri](#-ekran-görüntüleri) •
+[�📊 Test Sonuçları](#-test-sonuçları)
 
 ---
 
@@ -24,9 +26,24 @@
 |---|---|
 | **📛 Proje Adı** | Sosyal Ağ Analizi ve Görselleştirme Uygulaması |
 | **👥 Grup** | 40. Grup |
-| **👨‍💻 Ekip** | Muhammed Emir Karaman (231307093) <br> Nuh Regaib Ünsal (231307037) |
-| **📚 Ders** | Yazılım Geliştirme Laboratuvarı-I |
+| **👨‍💻 Ekip Üyeleri** | Muhammed Emir Karaman (231307093) <br> Nuh Regaib Ünsal (231307037) |
+| **📚 Ders** | Yazılım Geliştirme Laboratuvarı-I (Lab Proje II) |
 | **📅 Tarih** | Ocak 2026 |
+
+---
+
+## 🎯 Proje Amacı
+
+Bu proje, sosyal ağ verilerini analiz etmek, görselleştirmek ve çeşitli graf algoritmalarını uygulamak amacıyla geliştirilmiştir. Kullanıcılar ve bağlantılar bir graf yapısı olarak modellenmiş, çeşitli algoritmalar ile analiz edilmiş ve görselleştirilmiştir.
+
+### Hedefler
+
+- ✅ Graf veri yapılarını kullanarak sosyal ağları modellemek
+- ✅ BFS, DFS, Dijkstra, A* gibi temel graf algoritmalarını uygulamak
+- ✅ Bağlı bileşenleri tespit etmek
+- ✅ Merkezilik analizi yapmak
+- ✅ Welsh-Powell algoritması ile graf renklendirme yapmak
+- ✅ Modern ve kullanıcı dostu arayüz ile görselleştirme
 
 ---
 
@@ -47,9 +64,9 @@
 
 ### 🎨 Görselleştirme
 - ✅ İnteraktif graf canvas
-- ✅ Düğüm renklendirme
+- ✅ Algoritma bazlı renk kodlaması
 - ✅ Tıklama ile düğüm seçimi
-- ✅ Dairesel yerleşim algoritması
+- ✅ Rastgele yerleşim algoritması
 
 </td>
 </tr>
@@ -77,7 +94,71 @@
 
 ---
 
-## 🚀 Kurulum
+## � Ekran Görüntüleri
+
+### 🖥️ Ana Arayüz
+
+Uygulama modern ve kullanıcı dostu bir arayüze sahiptir. Sol tarafta graf görselleştirmesi, sağ tarafta kontrol panelleri bulunur.
+
+![Ana Arayüz](SS/Arayüz.png)
+
+---
+
+### 🔍 Graf Gezinti Algoritmaları
+
+#### BFS (Breadth-First Search) - Genişlik Öncelikli Arama
+
+BFS algoritması başlangıç düğümünden itibaren önce tüm komşuları, sonra komşuların komşularını ziyaret eder. Mavi renk ile vurgulanır.
+
+![BFS Sonucu](SS/BFS.png)
+
+#### DFS (Depth-First Search) - Derinlik Öncelikli Arama
+
+DFS algoritması mümkün olduğunca derine iner, geri dönüş yaparak diğer dalları keşfeder. Yeşil renk ile vurgulanır.
+
+![DFS Sonucu](SS/DFS.png)
+
+---
+
+### 🛤️ En Kısa Yol Algoritmaları
+
+#### Dijkstra Algoritması
+
+Dijkstra algoritması ağırlıklı graflarda iki düğüm arasındaki en kısa yolu bulur. Turuncu renk ile yol vurgulanır.
+
+![Dijkstra Sonucu](SS/Dijkstra.png)
+
+#### A* (A Star) Algoritması
+
+A* algoritması Dijkstra'nın sezgisel (heuristic) fonksiyon ile geliştirilmiş halidir. Daha az düğüm ziyaret ederek hedefe ulaşır.
+
+![A* Sonucu](SS/A'.png)
+
+---
+
+### 📈 Analiz Algoritmaları
+
+#### Merkezilik (Degree Centrality)
+
+En çok bağlantıya sahip düğümleri tespit eder. Sarı renk ile Top 5 düğüm vurgulanır.
+
+![Merkezilik Sonucu](SS/Merkez.png)
+
+#### Bağlı Bileşenler (Connected Components)
+
+Graf içindeki bağlı alt grafları tespit eder. Mor renk ile ilk bileşen vurgulanır.
+
+![Bağlı Bileşenler](SS/Bileşen.png)
+
+#### Welsh-Powell Renklendirme
+
+Komşu düğümlerin farklı renklerde olmasını sağlayan graf boyama algoritması.
+
+![Renklendirme Sonucu](SS/Renk.png)
+
+---
+
+## �🚀 Kurulum
 
 ### Gereksinimler
 
@@ -96,7 +177,10 @@ git clone https://github.com/username/SocialNetworkAnalysis.git
 # 2. Proje dizinine gidin
 cd SocialNetworkAnalysis
 
-# 3. Uygulamayı çalıştırın
+# 3. Projeyi derleyin
+dotnet build
+
+# 4. Uygulamayı çalıştırın
 dotnet run --project SocialNetworkAnalysis.UI
 ```
 
@@ -106,29 +190,35 @@ dotnet run --project SocialNetworkAnalysis.UI
 
 ### 1️⃣ Veri Yükleme
 
+CSV dosyası formatı:
+
 ```csv
 Id,Name,Activity,Interaction,ConnectionCount,Neighbors
-1,Ali,10,10,10,2;3
-2,Veli,20,20,20,1;4
-3,Can,15,15,15,1;4
+1,Ali,85,70,3,2;5;10
+2,Veli,72,65,3,1;3;8
+3,Ayşe,90,88,3,2;4;7
 ```
 
-> **💡 İpucu:** `test_small.csv` veya `test_medium.csv` dosyalarını örnek olarak kullanabilirsiniz.
+> **💡 İpucu:** `test_small.csv` (20 düğüm) veya `test_medium.csv` (100 düğüm) dosyalarını örnek olarak kullanabilirsiniz.
 
 ### 2️⃣ Algoritma Çalıştırma
 
-1. Canvas üzerinde bir düğüme tıklayarak **kaynak** seçin
-2. Gerekirse ikinci düğüme tıklayarak **hedef** seçin
-3. İlgili algoritma butonuna tıklayın
-4. Sonuçlar bilgi panelinde görüntülenir
+1. **CSV/JSON Yükle** butonuyla bir graf yükleyin
+2. Canvas üzerinde bir düğüme tıklayarak **Kaynak** seçin
+3. Gerekirse ikinci düğüme tıklayarak **Hedef** seçin (📍 Kaynak / 🎯 Hedef radio butonları ile mod değiştirin)
+4. İlgili algoritma butonuna tıklayın
+5. Sonuçlar bilgi panelinde görüntülenir ve graf üzerinde renklendirilir
 
 ### 3️⃣ Graf Düzenleme
 
 | İşlem | Adımlar |
 |-------|---------|
-| **Düğüm Ekle** | `Düğüm Ekle` → Bilgileri girin → `Tamam` |
-| **Düğüm Sil** | Düğüme tıklayın → `Düğüm Sil` |
-| **Kenar Ekle** | `Kenar Ekle` → Kaynak ve hedef seçin |
+| **Düğüm Ekle** | `➕ Ekle` → Bilgileri girin → `Tamam` |
+| **Düğüm Sil** | Düğüme tıklayın → `➖ Sil` |
+| **Düğüm Güncelle** | Düğüme tıklayın → `✏️ Güncelle` |
+| **Kenar Ekle** | `🔗 Kenar Ekle` → Kaynak ve hedef seçin |
+| **Kenar Sil** | `✂️ Kenar Sil` → Kaynak ve hedef seçin |
+| **Sıfırla** | `🔄 Sıfırla` → Tüm seçimleri ve görselleştirmeyi temizler |
 
 ---
 
@@ -139,13 +229,14 @@ Id,Name,Activity,Interaction,ConnectionCount,Neighbors
 <details>
 <summary><b>BFS (Breadth-First Search)</b></summary>
 
-**Çalışma Mantığı:** Başlangıç düğümünden başlayarak önce tüm komşuları, sonra komşuların komşularını ziyaret eder.
+**Çalışma Mantığı:** Başlangıç düğümünden başlayarak önce tüm komşuları, sonra komşuların komşularını ziyaret eder. Queue (kuyruk) veri yapısı kullanır.
 
 | Metrik | Değer |
 |--------|-------|
 | Zaman Karmaşıklığı | O(V + E) |
 | Uzay Karmaşıklığı | O(V) |
 | Veri Yapısı | Queue (Kuyruk) |
+| Görsel Renk | 🔵 Mavi |
 
 ```mermaid
 flowchart LR
@@ -162,13 +253,14 @@ flowchart LR
 <details>
 <summary><b>DFS (Depth-First Search)</b></summary>
 
-**Çalışma Mantığı:** Mümkün olduğunca derine iner, geri dönüş yaparak diğer dalları keşfeder.
+**Çalışma Mantığı:** Mümkün olduğunca derine iner, geri dönüş yaparak diğer dalları keşfeder. Stack (yığın) veri yapısı kullanır.
 
 | Metrik | Değer |
 |--------|-------|
 | Zaman Karmaşıklığı | O(V + E) |
 | Uzay Karmaşıklığı | O(V) |
 | Veri Yapısı | Stack (Yığın) |
+| Görsel Renk | 🟢 Yeşil |
 
 ```mermaid
 flowchart LR
@@ -194,6 +286,7 @@ flowchart LR
 | Zaman Karmaşıklığı | O(V²) / O(V log V + E)* |
 | Uzay Karmaşıklığı | O(V) |
 | Kullanım | Ağırlıklı graflar |
+| Görsel Renk | 🟠 Turuncu yol |
 
 > *Priority queue ile optimize edildiğinde
 
@@ -221,7 +314,15 @@ flowchart TD
 |--------|----------|
 | f(n) | Toplam maliyet tahmini |
 | g(n) | Başlangıçtan n'e maliyet |
-| h(n) | n'den hedefe tahmin |
+| h(n) | n'den hedefe tahmin (heuristic) |
+
+| Metrik | Değer |
+|--------|-------|
+| Zaman Karmaşıklığı | O(b^d) |
+| Uzay Karmaşıklığı | O(b^d) |
+| Görsel Renk | 🟠 Turuncu yol |
+
+**Heuristic Fonksiyonu:** Düğüm özellikleri (Activity, Interaction, ConnectionCount) arasındaki Öklid mesafesi kullanılır.
 
 </details>
 
@@ -236,6 +337,7 @@ Her düğümün komşu sayısını hesaplar. En yüksek değere sahip düğümle
 |--------|-------|
 | Zaman Karmaşıklığı | O(V) |
 | Uzay Karmaşıklığı | O(V) |
+| Görsel Renk | 🟡 Sarı (Top 5) |
 
 </details>
 
@@ -248,6 +350,7 @@ DFS kullanarak grafiğin tüm bağlı bileşenlerini bulur.
 |--------|-------|
 | Zaman Karmaşıklığı | O(V + E) |
 | Uzay Karmaşıklığı | O(V) |
+| Görsel Renk | 🟣 Mor (ilk bileşen) |
 
 </details>
 
@@ -257,14 +360,15 @@ DFS kullanarak grafiğin tüm bağlı bileşenlerini bulur.
 Komşu düğümlerin farklı renklerde olmasını sağlayan graf boyama algoritması.
 
 **Adımlar:**
-1. Düğümleri dereceye göre sırala
-2. Her düğüm için en küçük uygun rengi bul
-3. Rengi ata
+1. Düğümleri dereceye göre azalan sırada sırala
+2. Her düğüm için komşularının renklerini kontrol et
+3. En küçük uygun rengi ata
 
 | Metrik | Değer |
 |--------|-------|
 | Zaman Karmaşıklığı | O(V² + E) |
 | Uzay Karmaşıklığı | O(V) |
+| Görsel Renk | 🎨 Çoklu renkler |
 
 </details>
 
@@ -283,6 +387,7 @@ classDiagram
         +string Name
         +double Activity
         +double Interaction
+        +double ConnectionCount
         +List~string~ Neighbors
     }
     
@@ -298,6 +403,10 @@ classDiagram
         +AddNode()
         +AddEdge()
         +RemoveNode()
+        +RemoveEdge()
+        +UpdateNode()
+        +GetAdjacencyMatrix()
+        +GetAdjacencyList()
     }
     
     class IAlgorithm {
@@ -315,42 +424,83 @@ classDiagram
         +FindPath()
     }
     
+    class IColoringAlgorithm {
+        <<interface>>
+        +ColorGraph()
+        +GetColorGroups()
+    }
+    
     Node --o Graph
     Edge --o Graph
     IAlgorithm <|-- IGraphTraversalAlgorithm
     IAlgorithm <|-- IShortestPathAlgorithm
+    IAlgorithm <|-- IColoringAlgorithm
 ```
 
 ### Proje Yapısı
 
 ```
 📦 SocialNetworkAnalysis
-├── 📂 SocialNetworkAnalysis.Core/
-│   ├── 📄 Node.cs              # Düğüm modeli
-│   ├── 📄 Edge.cs              # Kenar modeli
-│   ├── 📄 Graph.cs             # Graf veri yapısı
-│   ├── 📄 BfsAlgorithm.cs      # BFS implementasyonu
-│   ├── 📄 DfsAlgorithm.cs      # DFS implementasyonu
-│   ├── 📄 ShortestPathAlgorithm.cs  # Dijkstra
-│   ├── 📄 AStarAlgorithm.cs    # A* algoritması
-│   ├── 📄 CentralityAlgorithm.cs
-│   ├── 📄 ConnectedComponentsAlgorithm.cs
-│   ├── 📄 WelshPowellColoringAlgorithm.cs
-│   ├── 📄 FileService.cs       # CSV işlemleri
-│   └── 📄 JsonFileService.cs   # JSON işlemleri
+├── 📂 SocialNetworkAnalysis.Core/      # İş mantığı katmanı
+│   ├── 📄 Node.cs                      # Düğüm modeli
+│   ├── 📄 Edge.cs                      # Kenar modeli
+│   ├── 📄 Graph.cs                     # Graf veri yapısı
+│   ├── 📄 IAlgorithm.cs                # Algoritma arayüzleri
+│   ├── 📄 BfsAlgorithm.cs              # BFS implementasyonu
+│   ├── 📄 DfsAlgorithm.cs              # DFS implementasyonu
+│   ├── 📄 ShortestPathAlgorithm.cs     # Dijkstra algoritması
+│   ├── 📄 AStarAlgorithm.cs            # A* algoritması
+│   ├── 📄 CentralityAlgorithm.cs       # Merkezilik analizi
+│   ├── 📄 ConnectedComponentsAlgorithm.cs  # Bağlı bileşenler
+│   ├── 📄 WelshPowellColoringAlgorithm.cs  # Graf renklendirme
+│   ├── 📄 WeightCalculator.cs          # Dinamik ağırlık hesaplama
+│   ├── 📄 FileService.cs               # CSV dosya işlemleri
+│   └── 📄 JsonFileService.cs           # JSON dosya işlemleri
 │
-└── 📂 SocialNetworkAnalysis.UI/
-    ├── 📄 MainWindow.xaml      # Ana pencere UI
-    ├── 📄 MainWindow.xaml.cs   # UI mantığı
-    ├── 📄 NodeDialog.xaml      # Düğüm ekleme dialogu
-    └── 📄 EdgeDialog.xaml      # Kenar ekleme dialogu
+├── 📂 SocialNetworkAnalysis.UI/        # Kullanıcı arayüzü katmanı
+│   ├── 📄 MainWindow.xaml              # Ana pencere tasarımı
+│   ├── 📄 MainWindow.xaml.cs           # Ana pencere mantığı
+│   ├── 📄 NodeDialog.xaml              # Düğüm ekleme/güncelleme dialogu
+│   ├── 📄 EdgeDialog.xaml              # Kenar ekleme/silme dialogu
+│   └── 📄 App.xaml                     # Uygulama ayarları
+│
+├── 📂 SS/                              # Ekran görüntüleri
+│   ├── 🖼️ Arayüz.png
+│   ├── 🖼️ BFS.png
+│   ├── 🖼️ DFS.png
+│   ├── 🖼️ Dijkstra.png
+│   ├── 🖼️ A'.png
+│   ├── 🖼️ Merkez.png
+│   ├── 🖼️ Bileşen.png
+│   └── 🖼️ Renk.png
+│
+├── 📄 test_small.csv                   # 20 düğümlük test verisi
+├── 📄 test_medium.csv                  # 100 düğümlük test verisi
+├── � TEST_SONUCLARI.md                # Detaylı test sonuçları
+└── 📄 README.md                        # Bu dosya
 ```
+
+---
+
+## 🧮 Dinamik Ağırlık Hesaplama
+
+Kenar ağırlıkları düğüm özelliklerine göre otomatik hesaplanır:
+
+$$Weight_{i,j} = \frac{1}{1 + \sqrt{(A_i - A_j)^2 + (I_i - I_j)^2 + (C_i - C_j)^2}}$$
+
+| Değişken | Açıklama |
+|----------|----------|
+| A | Activity (Etkinlik puanı) |
+| I | Interaction (Etkileşim puanı) |
+| C | ConnectionCount (Bağlantı sayısı) |
+
+> **Not:** Benzer özelliklere sahip düğümler arasındaki ağırlık **daha yüksek** (daha güçlü bağ), farklı özellikli düğümler arasındaki ağırlık **daha düşük** olur.
 
 ---
 
 ## 📊 Test Sonuçları
 
-### Performans Karşılaştırması
+### Performans Özeti
 
 | Algoritma | 20 Düğüm | 100 Düğüm | Ölçeklenme |
 |-----------|:--------:|:---------:|:----------:|
@@ -362,31 +512,31 @@ classDiagram
 | **Bağlı Bileşenler** | 1-2 ms | 8-12 ms | ✅ İyi |
 | **Welsh-Powell** | 3-4 ms | 25-40 ms | ✅ Kabul edilebilir |
 
-### Hata Kontrolü Testleri
+### Hata Kontrolü
 
 | Test Senaryosu | Durum |
 |----------------|:-----:|
 | Aynı ID'li düğüm ekleme | ✅ Engellendi |
 | Self-loop oluşturma | ✅ Engellendi |
-| Geçersiz düğüm ID'si | ✅ Hata mesajı |
-| Tekrarlanan kenar | ✅ Engellendi |
+| Geçersiz düğüm ID'si ile kenar | ✅ Hata mesajı |
+| Tekrarlanan kenar ekleme | ✅ Engellendi |
 | Boş ID ile düğüm ekleme | ✅ Kontrol edildi |
 
 > 📋 **Detaylı sonuçlar:** [TEST_SONUCLARI.md](TEST_SONUCLARI.md)
 
 ---
 
-## 🧮 Dinamik Ağırlık Hesaplama
+## 🎨 Algoritma Renk Kodları
 
-Kenar ağırlıkları aşağıdaki formül ile hesaplanır:
-
-$$Weight_{i,j} = \frac{1}{1 + \sqrt{(A_i - A_j)^2 + (I_i - I_j)^2 + (C_i - C_j)^2}}$$
-
-| Değişken | Açıklama |
-|----------|----------|
-| A | Activity (Etkinlik puanı) |
-| I | Interaction (Etkileşim puanı) |
-| C | ConnectionCount (Bağlantı sayısı) |
+| Algoritma | Renk | Açıklama |
+|-----------|------|----------|
+| **BFS** | 🔵 Mavi | Ziyaret edilen düğümler |
+| **DFS** | 🟢 Yeşil | Ziyaret edilen düğümler |
+| **Dijkstra** | 🟠 Turuncu | Bulunan en kısa yol |
+| **A*** | 🟠 Turuncu | Bulunan en kısa yol |
+| **Merkezilik** | 🟡 Sarı | En merkezi 5 düğüm |
+| **Bileşenler** | 🟣 Mor | İlk bağlı bileşen |
+| **Renklendirme** | 🎨 Çoklu | Komşu olmayan gruplar |
 
 ---
 
@@ -398,6 +548,7 @@ $$Weight_{i,j} = \frac{1}{1 + \sqrt{(A_i - A_j)^2 + (I_i - I_j)^2 + (C_i - C_j)^
 - [ ] Louvain topluluk tespiti
 - [ ] Animasyonlu algoritma görselleştirme
 - [ ] Büyük veri optimizasyonları
+- [ ] Graf veritabanı entegrasyonu
 
 ---
 
@@ -405,15 +556,23 @@ $$Weight_{i,j} = \frac{1}{1 + \sqrt{(A_i - A_j)^2 + (I_i - I_j)^2 + (C_i - C_j)^
 
 - [.NET Documentation](https://docs.microsoft.com/dotnet/)
 - [WPF Documentation](https://docs.microsoft.com/wpf/)
-- [Mermaid Diagrams](https://mermaid.js.org/)
-- [Graph Algorithms](https://en.wikipedia.org/wiki/Graph_algorithm)
+- [Graph Algorithms - Wikipedia](https://en.wikipedia.org/wiki/Graph_algorithm)
+- [Dijkstra's Algorithm](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)
+- [A* Search Algorithm](https://en.wikipedia.org/wiki/A*_search_algorithm)
+- [Welsh-Powell Algorithm](https://en.wikipedia.org/wiki/Graph_coloring)
 
 ---
 
 <div align="center">
 
-📖 **Bu proje eğitim amaçlı geliştirilmiştir.**
+## � Lisans
 
-Made with ❤️ by Group 40
+Bu proje **eğitim amaçlı** geliştirilmiştir.
+
+---
+
+**Made with ❤️ by Group 40**
+
+*Yazılım Geliştirme Laboratuvarı-I • Ocak 2026*
 
 </div>
