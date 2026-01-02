@@ -92,8 +92,6 @@ Bu proje, sosyal ağ verilerini analiz etmek, görselleştirmek ve çeşitli gra
 </tr>
 </table>
 
----
-
 ### Sınıf Diyagramı
 
 ```mermaid
@@ -200,15 +198,7 @@ classDiagram
 
 ---
 
-## 🖥️ Ana Arayüz
-
-Uygulama modern ve kullanıcı dostu bir arayüze sahiptir. Sol tarafta graf görselleştirmesi, sağ tarafta kontrol panelleri bulunur.
-
-![Ana Arayüz](SS/Arayüz.png)
-
----
-
-## 🚀 Kurulum
+##  Kurulum
 
 ### Gereksinimler
 
@@ -269,6 +259,14 @@ Id,Name,Activity,Interaction,ConnectionCount,Neighbors
 | **Kenar Ekle** | `🔗 Kenar Ekle` → Kaynak ve hedef seçin |
 | **Kenar Sil** | `✂️ Kenar Sil` → Kaynak ve hedef seçin |
 | **Sıfırla** | `🔄 Sıfırla` → Tüm seçimleri ve görselleştirmeyi temizler |
+
+---
+
+## 🖥️ Ana Arayüz
+
+Uygulama modern ve kullanıcı dostu bir arayüze sahiptir. Sol tarafta graf görselleştirmesi, sağ tarafta kontrol panelleri bulunur.
+
+![Ana Arayüz](SS/Arayüz.png)
 
 ---
 
