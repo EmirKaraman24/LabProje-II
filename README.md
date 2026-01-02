@@ -224,157 +224,92 @@ Id,Name,Activity,Interaction,ConnectionCount,Neighbors
 
 ## 🔬 Algoritmalar
 
-### 🔍 Graf Gezinti
+---
 
-<details>
-<summary><b>BFS (Breadth-First Search)</b></summary>
+### 🔵 BFS (Breadth-First Search) - Genişlik Öncelikli Arama
 
-**Çalışma Mantığı:** Başlangıç düğümünden başlayarak önce tüm komşuları, sonra komşuların komşularını ziyaret eder. Queue (kuyruk) veri yapısı kullanır.
+BFS, bir grafı **katman katman** gezer. Başlangıç düğümünden başlayarak önce tüm komşuları, sonra komşuların komşularını ziyaret eder. **Queue (kuyruk)** veri yapısı kullanır ve ağırlıksız graflarda en kısa yolu garanti eder.
 
-| Metrik | Değer |
-|--------|-------|
-| Zaman Karmaşıklığı | O(V + E) |
-| Uzay Karmaşıklığı | O(V) |
-| Veri Yapısı | Queue (Kuyruk) |
-| Görsel Renk | 🔵 Mavi |
-
-```mermaid
-flowchart LR
-    A[Başla] --> B[Queue'ya ekle]
-    B --> C{Queue boş?}
-    C -->|Hayır| D[Düğümü çıkar]
-    D --> E[Komşuları ekle]
-    E --> C
-    C -->|Evet| F[Bitti]
-```
-
-</details>
-
-<details>
-<summary><b>DFS (Depth-First Search)</b></summary>
-
-**Çalışma Mantığı:** Mümkün olduğunca derine iner, geri dönüş yaparak diğer dalları keşfeder. Stack (yığın) veri yapısı kullanır.
-
-| Metrik | Değer |
-|--------|-------|
-| Zaman Karmaşıklığı | O(V + E) |
-| Uzay Karmaşıklığı | O(V) |
-| Veri Yapısı | Stack (Yığın) |
-| Görsel Renk | 🟢 Yeşil |
-
-```mermaid
-flowchart LR
-    A[Başla] --> B[Stack'e ekle]
-    B --> C{Stack boş?}
-    C -->|Hayır| D[Düğümü çıkar]
-    D --> E[Komşuları ekle]
-    E --> C
-    C -->|Evet| F[Bitti]
-```
-
-</details>
-
-### 🛤️ En Kısa Yol
-
-<details>
-<summary><b>Dijkstra Algoritması</b></summary>
-
-**Çalışma Mantığı:** Her adımda en kısa mesafeye sahip düğümü seçer ve komşularının mesafelerini günceller.
-
-| Metrik | Değer |
-|--------|-------|
-| Zaman Karmaşıklığı | O(V²) / O(V log V + E)* |
-| Uzay Karmaşıklığı | O(V) |
-| Kullanım | Ağırlıklı graflar |
-| Görsel Renk | 🟠 Turuncu yol |
-
-> *Priority queue ile optimize edildiğinde
-
-```mermaid
-flowchart TD
-    A[Başla] --> B[Mesafeleri ∞ yap]
-    B --> C[Başlangıca 0 ata]
-    C --> D{Düğüm kaldı mı?}
-    D -->|Evet| E[En yakını seç]
-    E --> F[Komşuları güncelle]
-    F --> D
-    D -->|Hayır| G[Bitti]
-```
-
-</details>
-
-<details>
-<summary><b>A* Algoritması</b></summary>
-
-**Çalışma Mantığı:** Dijkstra'nın geliştirilmiş hali. Sezgisel fonksiyon ile daha az düğüm ziyaret eder.
-
-**Formül:** `f(n) = g(n) + h(n)`
-
-| Sembol | Açıklama |
-|--------|----------|
-| f(n) | Toplam maliyet tahmini |
-| g(n) | Başlangıçtan n'e maliyet |
-| h(n) | n'den hedefe tahmin (heuristic) |
-
-| Metrik | Değer |
-|--------|-------|
-| Zaman Karmaşıklığı | O(b^d) |
-| Uzay Karmaşıklığı | O(b^d) |
-| Görsel Renk | 🟠 Turuncu yol |
-
-**Heuristic Fonksiyonu:** Düğüm özellikleri (Activity, Interaction, ConnectionCount) arasındaki Öklid mesafesi kullanılır.
-
-</details>
-
-### 📈 Analiz Algoritmaları
-
-<details>
-<summary><b>Merkezilik (Degree Centrality)</b></summary>
-
-Her düğümün komşu sayısını hesaplar. En yüksek değere sahip düğümler ağın merkezindedir.
-
-| Metrik | Değer |
-|--------|-------|
-| Zaman Karmaşıklığı | O(V) |
-| Uzay Karmaşıklığı | O(V) |
-| Görsel Renk | 🟡 Sarı (Top 5) |
-
-</details>
-
-<details>
-<summary><b>Bağlı Bileşenler</b></summary>
-
-DFS kullanarak grafiğin tüm bağlı bileşenlerini bulur.
-
-| Metrik | Değer |
-|--------|-------|
-| Zaman Karmaşıklığı | O(V + E) |
-| Uzay Karmaşıklığı | O(V) |
-| Görsel Renk | 🟣 Mor (ilk bileşen) |
-
-</details>
-
-<details>
-<summary><b>Welsh-Powell Renklendirme</b></summary>
-
-Komşu düğümlerin farklı renklerde olmasını sağlayan graf boyama algoritması.
-
-**Adımlar:**
-1. Düğümleri dereceye göre azalan sırada sırala
-2. Her düğüm için komşularının renklerini kontrol et
-3. En küçük uygun rengi ata
-
-| Metrik | Değer |
-|--------|-------|
-| Zaman Karmaşıklığı | O(V² + E) |
-| Uzay Karmaşıklığı | O(V) |
-| Görsel Renk | 🎨 Çoklu renkler |
-
-</details>
+| Özellik | Değer |
+|---------|-------|
+| Veri Yapısı | Queue (FIFO) |
+| Karmaşıklık | O(V + E) |
+| Görsel | 🔵 Mavi |
 
 ---
 
-## 🏗️ Mimari
+### 🟢 DFS (Depth-First Search) - Derinlik Öncelikli Arama
+
+DFS, bir grafı **derinlemesine** gezer. Bir yolda mümkün olduğunca ilerler, çıkmaza girdiğinde geri dönerek diğer dalları keşfeder. **Stack (yığın)** veri yapısı kullanır ve döngü tespiti, topolojik sıralama gibi işlemler için idealdir.
+
+| Özellik | Değer |
+|---------|-------|
+| Veri Yapısı | Stack (LIFO) |
+| Karmaşıklık | O(V + E) |
+| Görsel | 🟢 Yeşil |
+
+---
+
+### ⚡ Dijkstra Algoritması
+
+Dijkstra, ağırlıklı graflarda **en kısa yolu** bulan açgözlü bir algoritmadır. Her adımda henüz işlenmemiş düğümler arasından en kısa mesafeye sahip olanı seçer ve komşularının mesafelerini günceller. Negatif ağırlıklı kenarları desteklemez.
+
+| Özellik | Değer |
+|---------|-------|
+| Kullanım | Ağırlıklı graflarda en kısa yol |
+| Karmaşıklık | O(V²) veya O((V+E) log V) |
+| Görsel | 🟠 Turuncu yol |
+
+---
+
+### ⭐ A* (A Star) Algoritması
+
+A*, Dijkstra'nın **sezgisel fonksiyon (heuristic)** ile geliştirilmiş halidir. Hedefe olan tahmini mesafeyi de hesaba katarak daha az düğüm ziyaret eder. Formül: `f(n) = g(n) + h(n)` şeklindedir; g(n) gerçek maliyet, h(n) tahmini maliyettir.
+
+| Özellik | Değer |
+|---------|-------|
+| Avantaj | Dijkstra'dan daha hızlı |
+| Karmaşıklık | Heuristic kalitesine bağlı |
+| Görsel | 🟠 Turuncu yol |
+
+---
+
+### 🎯 Merkezilik (Degree Centrality)
+
+Derece Merkeziliği, bir düğümün **kaç komşuya sahip olduğunu** ölçer. Daha fazla bağlantıya sahip düğümler ağın "merkezinde" kabul edilir. Sosyal ağlarda popülerliği gösterir.
+
+| Özellik | Değer |
+|---------|-------|
+| Hesaplama | Komşu sayısı |
+| Karmaşıklık | O(V) |
+| Görsel | 🟡 Sarı (Top 5) |
+
+---
+
+### 🔗 Bağlı Bileşenler (Connected Components)
+
+Bir grafta birbirine bağlı olmayan **alt grafları** tespit eder. DFS kullanarak her bileşeni ayrı ayrı bulur. Sosyal ağlarda izole grupları, ağ analizinde kopuk bölgeleri gösterir.
+
+| Özellik | Değer |
+|---------|-------|
+| Kullanım | Alt graf tespiti |
+| Karmaşıklık | O(V + E) |
+| Görsel | 🟣 Mor (ilk bileşen) |
+
+---
+
+### 🎨 Welsh-Powell Renklendirme
+
+Graf renklendirme, **komşu düğümlerin farklı renklerde** olmasını sağlar. Welsh-Powell, düğümleri derecelerine göre sıralayarak minimum renge yakın sonuç üretir. Çizelgeleme ve kaynak atama problemlerinde kullanılır.
+
+| Özellik | Değer |
+|---------|-------|
+| Yöntem | Derece bazlı sıralama + açgözlü atama |
+| Karmaşıklık | O(V² + E) |
+| Görsel | 🎨 Çoklu renkler |
+
+---
+
 
 ### Sınıf Diyagramı
 
