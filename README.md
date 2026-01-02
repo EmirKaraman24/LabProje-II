@@ -94,67 +94,11 @@ Bu proje, sosyal ağ verilerini analiz etmek, görselleştirmek ve çeşitli gra
 
 ---
 
-## � Ekran Görüntüleri
-
-### 🖥️ Ana Arayüz
+## 🖥️ Ana Arayüz
 
 Uygulama modern ve kullanıcı dostu bir arayüze sahiptir. Sol tarafta graf görselleştirmesi, sağ tarafta kontrol panelleri bulunur.
 
 ![Ana Arayüz](SS/Arayüz.png)
-
----
-
-### 🔍 Graf Gezinti Algoritmaları
-
-#### BFS (Breadth-First Search) - Genişlik Öncelikli Arama
-
-BFS algoritması başlangıç düğümünden itibaren önce tüm komşuları, sonra komşuların komşularını ziyaret eder. Mavi renk ile vurgulanır.
-
-![BFS Sonucu](SS/BFS.png)
-
-#### DFS (Depth-First Search) - Derinlik Öncelikli Arama
-
-DFS algoritması mümkün olduğunca derine iner, geri dönüş yaparak diğer dalları keşfeder. Yeşil renk ile vurgulanır.
-
-![DFS Sonucu](SS/DFS.png)
-
----
-
-### 🛤️ En Kısa Yol Algoritmaları
-
-#### Dijkstra Algoritması
-
-Dijkstra algoritması ağırlıklı graflarda iki düğüm arasındaki en kısa yolu bulur. Turuncu renk ile yol vurgulanır.
-
-![Dijkstra Sonucu](SS/Dijkstra.png)
-
-#### A* (A Star) Algoritması
-
-A* algoritması Dijkstra'nın sezgisel (heuristic) fonksiyon ile geliştirilmiş halidir. Daha az düğüm ziyaret ederek hedefe ulaşır.
-
-![A* Sonucu](SS/A'.png)
-
----
-
-### 📈 Analiz Algoritmaları
-
-#### Merkezilik (Degree Centrality)
-
-En çok bağlantıya sahip düğümleri tespit eder. Sarı renk ile Top 5 düğüm vurgulanır.
-
-![Merkezilik Sonucu](SS/Merkez.png)
-
-#### Bağlı Bileşenler (Connected Components)
-
-Graf içindeki bağlı alt grafları tespit eder. Mor renk ile ilk bileşen vurgulanır.
-
-![Bağlı Bileşenler](SS/Bileşen.png)
-
-#### Welsh-Powell Renklendirme
-
-Komşu düğümlerin farklı renklerde olmasını sağlayan graf boyama algoritması.
-
-![Renklendirme Sonucu](SS/Renk.png)
 
 ---
 
