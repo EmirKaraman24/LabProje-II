@@ -174,6 +174,16 @@ Id,Name,Activity,Interaction,ConnectionCount,Neighbors
 
 BFS, bir grafı **katman katman** gezer. Başlangıç düğümünden başlayarak önce tüm komşuları, sonra komşuların komşularını ziyaret eder. **Queue (kuyruk)** veri yapısı kullanır ve ağırlıksız graflarda en kısa yolu garanti eder.
 
+```mermaid
+flowchart LR
+    A[Başla] --> B[Queue'ya ekle]
+    B --> C{Queue boş?}
+    C -->|Hayır| D[Düğümü çıkar]
+    D --> E[Komşuları ekle]
+    E --> C
+    C -->|Evet| F[Bitti]
+```
+
 ![BFS Sonucu](SS/BFS.png)
 
 | Özellik | Değer |
@@ -188,6 +198,16 @@ BFS, bir grafı **katman katman** gezer. Başlangıç düğümünden başlayarak
 
 DFS, bir grafı **derinlemesine** gezer. Bir yolda mümkün olduğunca ilerler, çıkmaza girdiğinde geri dönerek diğer dalları keşfeder. **Stack (yığın)** veri yapısı kullanır ve döngü tespiti, topolojik sıralama gibi işlemler için idealdir.
 
+```mermaid
+flowchart LR
+    A[Başla] --> B[Stack'e ekle]
+    B --> C{Stack boş?}
+    C -->|Hayır| D[Düğümü çıkar]
+    D --> E[Komşuları ekle]
+    E --> C
+    C -->|Evet| F[Bitti]
+```
+
 ![DFS Sonucu](SS/DFS.png)
 
 | Özellik | Değer |
@@ -201,6 +221,17 @@ DFS, bir grafı **derinlemesine** gezer. Bir yolda mümkün olduğunca ilerler, 
 ### ⚡ Dijkstra Algoritması
 
 Dijkstra, ağırlıklı graflarda **en kısa yolu** bulan açgözlü bir algoritmadır. Her adımda henüz işlenmemiş düğümler arasından en kısa mesafeye sahip olanı seçer ve komşularının mesafelerini günceller. Negatif ağırlıklı kenarları desteklemez.
+
+```mermaid
+flowchart TD
+    A[Başla] --> B[Mesafeleri ∞ yap]
+    B --> C[Başlangıca 0 ata]
+    C --> D{Düğüm kaldı mı?}
+    D -->|Evet| E[En yakını seç]
+    E --> F[Komşuları güncelle]
+    F --> D
+    D -->|Hayır| G[Bitti]
+```
 
 ![Dijkstra Sonucu](SS/Dijkstra.png)
 
@@ -463,18 +494,3 @@ $$Weight_{i,j} = \frac{1}{1 + \sqrt{(A_i - A_j)^2 + (I_i - I_j)^2 + (C_i - C_j)^
 - [WPF Documentation - Microsoft](https://docs.microsoft.com/dotnet/desktop/wpf/)
 - [C# Programming Guide - Microsoft](https://docs.microsoft.com/dotnet/csharp/programming-guide/)
 
----
-
-<div align="center">
-
-## � Lisans
-
-Bu proje **eğitim amaçlı** geliştirilmiştir.
-
----
-
-**Made with ❤️ by Group 40**
-
-*Yazılım Geliştirme Laboratuvarı-I • Ocak 2026*
-
-</div>
